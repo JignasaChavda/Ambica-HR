@@ -1,0 +1,22 @@
+[
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Cancel",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2023-12-19 19:11:29.982783",
+  "module": "Ambica HR",
+  "name": "Clear Salary details table in employee master",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Employee",
+  "script": "emp = doc.employee\ncur_assignment = doc.name\n\nemployee = frappe.get_doc(\"Employee\", emp)\nemp_assignment = employee.salary_structure_assignment\n\nif cur_assignment == emp_assignment:\n    employee.salary_structure_assignment = \"\"\n    employee.salary_structure = \"\"\n    employee.get(\"earnings\").clear()\n    employee.save()\n",
+  "script_type": "DocType Event"
+ }
+]

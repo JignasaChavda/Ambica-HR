@@ -227,3 +227,62 @@ app_license = "mit"
 #	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {"dt":"Server Script","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ],
+        ]
+    ]},
+    {"dt":"Custom Field","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ]
+        ]
+    ]},
+    {"dt":"Client Script","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ],
+        ]
+    ]},
+    {"dt":"Property Setter","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ],
+        ]
+    ]},
+    {"dt":"Custom DocPerm","filters":[
+        [
+            "role","in",[
+               "Ambica HR-User"
+            ],
+        ]
+    ]},
+    {"dt":"Role","filters":[
+        [
+            "name","in",[
+               "Ambica HR-User"
+            ],
+        ]
+    ]},
+    {"dt":"Module Profile","filters":[
+        [
+            "name","in",[
+               "Ambica HR-Payroll"
+            ],
+        ]
+    ]},
+    {"dt":"Workspace","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ],
+        ]
+    ]}
+    
+]

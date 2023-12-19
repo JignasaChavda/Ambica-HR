@@ -1,0 +1,73 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"BjZYHmshKf\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Employee Master</span>\",\"col\":12}},{\"id\":\"1nzkeAU7Xs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"Q4yqTgOfyB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Skill Category\",\"col\":3}},{\"id\":\"mkZs9Tum1x\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employment Type\",\"col\":3}},{\"id\":\"01TOXrAaB6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Designation\",\"col\":3}},{\"id\":\"0dkbjUfIU_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}}]",
+ "creation": "2023-12-19 10:41:29.191224",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "share-people",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Employee Master",
+ "links": [],
+ "modified": "2023-12-19 19:18:15.686778",
+ "modified_by": "Administrator",
+ "module": "Ambica HR",
+ "name": "Employee Master",
+ "number_cards": [],
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Ambica HR-User"
+  }
+ ],
+ "sequence_id": 39.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Employee",
+   "link_to": "Employee",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Skill Category",
+   "link_to": "Skill Category",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Employment Type",
+   "link_to": "Employment Type",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Designation",
+   "link_to": "Designation",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Department",
+   "link_to": "Department",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Employee Master"
+}

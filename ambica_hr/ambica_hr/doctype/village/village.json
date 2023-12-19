@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:village",
+ "creation": "2023-12-12 14:18:40.899796",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "village",
+  "post_office",
+  "postal_code",
+  "taluka",
+  "column_break_we5b",
+  "district",
+  "state",
+  "country",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "village",
+   "fieldtype": "Data",
+   "label": "Village",
+   "unique": 1
+  },
+  {
+   "fieldname": "post_office",
+   "fieldtype": "Link",
+   "label": "Post Office",
+   "options": "Post Office"
+  },
+  {
+   "fetch_from": "post_office.post_office",
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "fetch_from": "post_office.taluka",
+   "fieldname": "taluka",
+   "fieldtype": "Data",
+   "label": "Taluka"
+  },
+  {
+   "fieldname": "column_break_we5b",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "post_office.district",
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "fetch_from": "post_office.state",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fetch_from": "post_office.country",
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "label": "Country"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Village",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-12-19 19:13:27.730063",
+ "modified_by": "Administrator",
+ "module": "Ambica HR",
+ "name": "Village",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

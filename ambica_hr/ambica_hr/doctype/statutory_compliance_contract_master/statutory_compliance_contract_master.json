@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{statutory_act} - {###}",
+ "creation": "2023-10-10 12:26:58.533152",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "statutory_act",
+  "details_of_compliance",
+  "column_break_1jcd4",
+  "notify_beforein_days",
+  "user",
+  "statutory_compliance_details_section",
+  "supreme_facility",
+  "raxak_security",
+  "dhruv_food_court"
+ ],
+ "fields": [
+  {
+   "fieldname": "statutory_act",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Statutory Act"
+  },
+  {
+   "fieldname": "details_of_compliance",
+   "fieldtype": "Text",
+   "label": "What to Do",
+   "max_height": "7rem"
+  },
+  {
+   "fieldname": "column_break_1jcd4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notify_beforein_days",
+   "fieldtype": "Int",
+   "label": "Notify before(In Days)"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Table MultiSelect",
+   "label": "User",
+   "options": "Compliance User"
+  },
+  {
+   "fieldname": "statutory_compliance_details_section",
+   "fieldtype": "Section Break",
+   "label": "Statutory Compliance Details"
+  },
+  {
+   "fieldname": "supreme_facility",
+   "fieldtype": "Table",
+   "label": "Supreme Facility",
+   "options": "Supreme Facility Compliance Details"
+  },
+  {
+   "fieldname": "raxak_security",
+   "fieldtype": "Table",
+   "label": "Raxak Security",
+   "options": "Raxak Security Compliance Details"
+  },
+  {
+   "fieldname": "dhruv_food_court",
+   "fieldtype": "Table",
+   "label": "Dhruv Food Court",
+   "options": "Dhruv Food Court Compliance Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-19 19:13:24.096105",
+ "modified_by": "Administrator",
+ "module": "Ambica HR",
+ "name": "Statutory Compliance Contract Master",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-12-06 18:41:06.770902",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "import_date",
+  "column_break_zxvbq",
+  "naming_series",
+  "section_break_xk9mk",
+  "canteen_details_section",
+  "canteen_details",
+  "import_file_errors_and_warnings_section",
+  "error_row",
+  "import_warnings"
+ ],
+ "fields": [
+  {
+   "fieldname": "import_date",
+   "fieldtype": "Date",
+   "label": "Import Date"
+  },
+  {
+   "fieldname": "column_break_zxvbq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CAN-ATT-IMP.-"
+  },
+  {
+   "fieldname": "section_break_xk9mk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "canteen_details_section",
+   "fieldtype": "Section Break",
+   "label": "Canteen Details"
+  },
+  {
+   "fieldname": "canteen_details",
+   "fieldtype": "Table",
+   "label": "Canteen Details",
+   "options": "Canteen Preview"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "import_file_errors_and_warnings_section",
+   "fieldtype": "Section Break",
+   "label": "Import File Errors and Warnings"
+  },
+  {
+   "fieldname": "error_row",
+   "fieldtype": "Text Editor",
+   "hidden": 1,
+   "label": "Error row"
+  },
+  {
+   "fieldname": "import_warnings",
+   "fieldtype": "HTML",
+   "label": "Import Warnings"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-19 19:13:26.649629",
+ "modified_by": "Administrator",
+ "module": "Ambica HR",
+ "name": "Canteen Attendance Import",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

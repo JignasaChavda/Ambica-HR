@@ -1,0 +1,75 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-12 13:36:10.865413",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "from_date",
+  "to_date",
+  "rate",
+  "basic_percentage",
+  "column_break_xpyi",
+  "hra_percentage",
+  "basic",
+  "hra"
+ ],
+ "fields": [
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "From Date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "To Date"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "precision": "1"
+  },
+  {
+   "fieldname": "basic_percentage",
+   "fieldtype": "Percent",
+   "label": "Basic(%)"
+  },
+  {
+   "fieldname": "column_break_xpyi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hra_percentage",
+   "fieldtype": "Percent",
+   "label": "HRA(%)"
+  },
+  {
+   "fieldname": "basic",
+   "fieldtype": "Currency",
+   "label": "Basic"
+  },
+  {
+   "fieldname": "hra",
+   "fieldtype": "Currency",
+   "label": "HRA"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-12-19 19:13:25.995373",
+ "modified_by": "Administrator",
+ "module": "Ambica HR",
+ "name": "Rate Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
