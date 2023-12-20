@@ -138,7 +138,7 @@ override_doctype_class = {
 scheduler_events = {
     "Update_employee_details": {
        "29 13 * * *": [
-          "ambica_polymer.employee_promotion_overrides.Update_employee_details"
+          "ambica_hr.employee_promotion_overrides.Update_employee_details"
         ]
     },
 

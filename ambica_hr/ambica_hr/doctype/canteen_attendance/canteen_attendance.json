@@ -10,12 +10,14 @@
  "field_order": [
   "naming_series",
   "employee",
+  "fianl_id",
   "employee_name",
   "employment_type",
   "column_break_2aqzc",
   "canteen_card_no",
   "company",
   "category",
+  "software_manual",
   "section_break_0apqr",
   "type",
   "date",
@@ -124,11 +126,22 @@
    "fieldname": "net_amount",
    "fieldtype": "Data",
    "label": "Net Amount"
+  },
+  {
+   "fieldname": "software_manual",
+   "fieldtype": "Select",
+   "label": "Software/Manual",
+   "options": "Software\nManual"
+  },
+  {
+   "fieldname": "fianl_id",
+   "fieldtype": "Data",
+   "label": "Fianl ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-19 19:13:26.314633",
+ "modified": "2023-12-20 22:33:02.122490",
  "modified_by": "Administrator",
  "module": "Ambica HR",
  "name": "Canteen Attendance",
