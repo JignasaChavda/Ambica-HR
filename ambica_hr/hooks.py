@@ -114,9 +114,12 @@ app_license = "mit"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Salary Structure Assignment": "ambica_hr.salary_structure_assignment_overrides.SalaryStructureAssignment",
+    "Employee Promotion": "ambica_hr.employee_promotion_overrides.EmployeePromotion",
+    "Attendance": "ambica_hr.attendance_overrides.Attendance"
+}
+
 
 # Document Events
 # ---------------
@@ -132,24 +135,30 @@ app_license = "mit"
 
 # Scheduled Tasks
 # ---------------
+scheduler_events = {
+    "Update_employee_details": {
+       "29 13 * * *": [
+          "ambica_polymer.employee_promotion_overrides.Update_employee_details"
+        ]
+    },
 
-# scheduler_events = {
+
 #	"all": [
-#		"ambica_hr.tasks.all"
+#		"ambica_polymer.tasks.all"
 #	],
 #	"daily": [
-#		"ambica_hr.tasks.daily"
+#		"ambica_polymer.tasks.daily"
 #	],
 #	"hourly": [
-#		"ambica_hr.tasks.hourly"
+#		"ambica_polymer.tasks.hourly"
 #	],
 #	"weekly": [
-#		"ambica_hr.tasks.weekly"
+#		"ambica_polymer.tasks.weekly"
 #	],
 #	"monthly": [
-#		"ambica_hr.tasks.monthly"
+#		"ambica_polymer.tasks.monthly"
 #	],
-# }
+}
 
 # Testing
 # -------

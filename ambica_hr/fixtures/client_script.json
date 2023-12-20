@@ -1,6 +1,5 @@
 [
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
@@ -12,7 +11,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Attendance Import",
@@ -24,7 +22,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Labour Welfare Fund",
@@ -36,7 +33,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Canteen Attendance",
@@ -48,7 +44,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
@@ -60,7 +55,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
@@ -72,7 +66,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee Bonus",
@@ -84,7 +77,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Gratuity",
@@ -96,7 +88,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Salary Slip",
@@ -108,7 +99,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Attendance",
@@ -120,7 +110,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee Promotion",
@@ -132,7 +121,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Branch",
@@ -144,7 +132,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee Leave Encashment",
@@ -156,7 +143,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Canteen Attendance Import",
