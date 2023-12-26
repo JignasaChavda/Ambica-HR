@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-12-26 16:29:04.952625",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "department",
+  "designation",
+  "date",
+  "shift_coupan_used_in",
+  "column_break_bmo8",
+  "coupan_no",
+  "lunch",
+  "dinner",
+  "tea_and_snacks",
+  "reason",
+  "softwaremanual",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "CAN-COUPAN-."
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "column_break_bmo8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "coupan_no",
+   "fieldtype": "Data",
+   "label": "Coupan No"
+  },
+  {
+   "fieldname": "lunch",
+   "fieldtype": "Int",
+   "label": "Lunch"
+  },
+  {
+   "fieldname": "dinner",
+   "fieldtype": "Int",
+   "label": "Dinner"
+  },
+  {
+   "fieldname": "tea_and_snacks",
+   "fieldtype": "Int",
+   "label": "Tea & Snacks"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Data",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "softwaremanual",
+   "fieldtype": "Select",
+   "label": "Software/Manual",
+   "options": "Software\nManual"
+  },
+  {
+   "fieldname": "shift_coupan_used_in",
+   "fieldtype": "Link",
+   "label": "Shift - Coupan Used In",
+   "options": "Shift Type"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Canteen Coupan",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-12-26 16:35:48.397341",
+ "modified_by": "Administrator",
+ "module": "Ambica HR",
+ "name": "Canteen Coupan",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
