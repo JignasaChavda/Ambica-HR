@@ -1,0 +1,1218 @@
+[
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 0,
+  "columns": [
+   {
+    "fieldname": "department",
+    "fieldtype": "Data",
+    "label": "Department",
+    "options": null,
+    "parent": "Department wise Head Count",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "designation",
+    "fieldtype": "Data",
+    "label": "Designation",
+    "options": null,
+    "parent": "Department wise Head Count",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "head_count",
+    "fieldtype": "Data",
+    "label": "Head Count",
+    "options": null,
+    "parent": "Department wise Head Count",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   }
+  ],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.651983",
+  "module": "Ambica HR",
+  "name": "Department wise Head Count",
+  "prepared_report": 0,
+  "query": "SELECT\n    em.department AS \"Department\",\n    em.designation AS \"Designation\",\n    (SELECT COUNT(*) FROM `tabEmployee` sub_em \n     WHERE sub_em.department = em.department AND sub_em.designation = em.designation) AS \"Head Count\"\nFROM\n    `tabEmployee` em\nWHERE\n    em.department IS NOT NULL AND em.designation IS NOT NULL;\n",
+  "ref_doctype": "Employee",
+  "reference_report": null,
+  "report_name": "Department wise Head Count",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Department wise Head Count",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Department wise Head Count",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Department wise Head Count",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Department wise Head Count",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.595171",
+  "module": "Ambica HR",
+  "name": "Annual Gratuity Accrual Report",
+  "prepared_report": 0,
+  "query": "SELECT \nhealth_insurance_no as \"LIC ID\",\nprovident_fund_account as \"Member's Identification No/ PF No\",\nemployee_name as \"Name of Member\",\ndate_of_birth as \"Date of Birth\",\ndate_of_joining as \"Date of Joining Service\",\nrelieving_date as \"Date of Leaving Service\",\n'15' as \"No. of Years of Service\",\n'214.00' as \"Mly/Per Day Salary on Which Grty is Calculated\",\n'48,150.00' as \"Amount Payable\",\n'' as \"Remarks\",\n'' as \"Ref. No\"\nFROM `tabEmployee`\nWHERE employee_name = 'Yogeshkumar Punambhai Patel';\n",
+  "ref_doctype": "Employee",
+  "reference_report": null,
+  "report_name": "Annual Gratuity Accrual Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Annual Gratuity Accrual Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Ambica HR-User"
+   },
+   {
+    "parent": "Annual Gratuity Accrual Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Annual Gratuity Accrual Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "Annual Gratuity Accrual Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Annual Gratuity Accrual Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [
+   {
+    "fieldname": "emp.employee",
+    "fieldtype": "Link",
+    "label": "Employee ID",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "emp.employee_name",
+    "fieldtype": "Data",
+    "label": "Employee Name",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "emp.week_off",
+    "fieldtype": "Data",
+    "label": "Week Off",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "previous_weekoff",
+    "fieldtype": "Data",
+    "label": "Previous WOff",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "1",
+    "fieldtype": "Data",
+    "label": "1",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "2",
+    "fieldtype": "Data",
+    "label": "2",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "3",
+    "fieldtype": "Data",
+    "label": "3",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "4",
+    "fieldtype": "Data",
+    "label": "4",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "5",
+    "fieldtype": "Data",
+    "label": "5",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "next_weekoff",
+    "fieldtype": "Data",
+    "label": "Next WOff",
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   }
+  ],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "from_date",
+    "fieldtype": "Date",
+    "label": "From Date",
+    "mandatory": 0,
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "to_date",
+    "fieldtype": "Date",
+    "label": "To Date",
+    "mandatory": 0,
+    "options": null,
+    "parent": "Week Off Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "department",
+    "fieldtype": "Link",
+    "label": "Department",
+    "mandatory": 0,
+    "options": "Department",
+    "parent": "Week Off Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:56.161935",
+  "module": "Ambica HR",
+  "name": "Week Off Statement",
+  "prepared_report": 0,
+  "query": "SELECT\n    emp.employee AS \"Employee ID\",\n    emp.employee_name AS \"Employee Name\",\n    \"Saturday\" AS \"WeekOff\",\n    '30' AS \"Pre. WOff\",\n    '7' AS \"1\",\n    '14' AS \"2\",\n    \"21\" AS \"3\",\n    \"28\" AS \"4\",\n    \"0\" AS \"5\",\n    \"4\" AS \"Next WOff\"\nFROM\n    `tabEmployee` as emp\n\nWHERE\n    emp.employee = 'HR-EMP-00002'\n",
+  "ref_doctype": "Employee",
+  "reference_report": null,
+  "report_name": "Week Off Statement",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Week Off Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Ambica HR-User"
+   },
+   {
+    "parent": "Week Off Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Week Off Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "Week Off Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Week Off Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "from_date",
+    "fieldtype": "Date",
+    "label": "From Date",
+    "mandatory": 1,
+    "options": null,
+    "parent": "PT Deduction Report",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "to_date",
+    "fieldtype": "Date",
+    "label": "To Date",
+    "mandatory": 1,
+    "options": null,
+    "parent": "PT Deduction Report",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:56.105542",
+  "module": "Ambica HR",
+  "name": "PT Deduction Report",
+  "prepared_report": 0,
+  "query": "select\nsl.uan_number as \"UAN\",\nsl.employee_name as \"Employee Name\",\nem.ctc as \"Gross Wages\",\nsd.amount as \"Professional Tax\"\n\nfrom\n`tabSalary Slip` sl\njoin `tabSalary Detail` as sd on sl.name = sd.parent , `tabEmployee` em\nwhere\nem.name = sl.employee\nAND sd.salary_component=\"Professional Tax\"\nAND sl.start_date >= %(from_date)s\nAND sl.end_date <= %(to_date)s\n",
+  "ref_doctype": "Salary Slip",
+  "reference_report": null,
+  "report_name": "PT Deduction Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "PT Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "PT Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "PT Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "PT Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:56.072498",
+  "module": "Ambica HR",
+  "name": "PL Encashment Report",
+  "prepared_report": 0,
+  "query": "SELECT DISTINCT\n  21 as `01/23`,\n  0 as `02/023`,\n  '' as `03/23`,\n  '' as `04/23`,\n  '' as `05/23`,\n  '' as `06/23`,\n  '' as `07/23`,\n  '' as `08/23`,\n  '' as `09/23`,\n  '' as `10/23`,\n  '' as `11/23`,\n  '' as `12/23`,\n  21 as `Total Days`,\n  1 as `Total PL Eligible`,\n  14800 as `Gross Salary`,\n  569.23 as `Daily Rate`,\n  569.00 as `PL Amount to be Paid`\nFROM `tabAttendance`\n",
+  "ref_doctype": "Attendance",
+  "reference_report": null,
+  "report_name": "PL Encashment Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "PL Encashment Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "PL Encashment Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "PL Encashment Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "PL Encashment Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "from_date",
+    "fieldtype": "Date",
+    "label": "From Date",
+    "mandatory": 1,
+    "options": null,
+    "parent": "PF Deduction Report",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "to_date",
+    "fieldtype": "Date",
+    "label": "To Date",
+    "mandatory": 1,
+    "options": null,
+    "parent": "PF Deduction Report",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:56.037868",
+  "module": "Ambica HR",
+  "name": "PF Deduction Report",
+  "prepared_report": 0,
+  "query": "SELECT\n    sl.uan_number AS \"UAN\",\n    sl.employee_name AS \"Member Name\",\n    em.ctc AS \"Gross Wages\",\n    em.ctc AS \"EPF Wages\",\n    em.ctc AS \"EPS Wages\",\n    em.ctc AS \"EDLI Wages\",\n    SUM(IF(sd.salary_component = \"Provident Fund\", sd.amount, 0)) AS \"EPF Contribution Remitted\",\n    CASE WHEN sd.salary_component = \"Basic\" THEN ROUND((sd.amount * 0.0833)) ELSE 0 END AS \"EPS Contribution Remitted\",\n    CASE WHEN sd.salary_component = \"Basic\" THEN ROUND((sd.amount * 0.0367)) ELSE 0 END AS \"EPF EPS Difference Remitted\",\n    sl.leave_without_pay AS \"NCP Days\",\n    NULL AS \"Refund Of Advances\"\nFROM\n    `tabSalary Slip` sl\nJOIN\n    `tabSalary Detail` sd ON sl.name = sd.parent\nJOIN\n    `tabEmployee` em ON em.name = sl.employee\nWHERE\n    sd.salary_component IN (\"Provident Fund\", \"Basic\")\n    AND sl.start_date >= %(from_date)s\n    AND sl.end_date <= %(to_date)s\nGROUP BY\n    sl.uan_number, sl.employee_name, em.ctc, sl.leave_without_pay;\n",
+  "ref_doctype": "Salary Slip",
+  "reference_report": null,
+  "report_name": "PF Deduction Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "PF Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "PF Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "PF Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "PF Deduction Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "from_date",
+    "fieldtype": "Date",
+    "label": "From Date",
+    "mandatory": 1,
+    "options": null,
+    "parent": "Manpower Planning",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "to_date",
+    "fieldtype": "Date",
+    "label": "To Date",
+    "mandatory": 1,
+    "options": null,
+    "parent": "Manpower Planning",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "department",
+    "fieldtype": "Link",
+    "label": "Department",
+    "mandatory": 0,
+    "options": "Department",
+    "parent": "Manpower Planning",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.998793",
+  "module": "Ambica HR",
+  "name": "Manpower Planning",
+  "prepared_report": 0,
+  "query": "SELECT\n    'Needle Punching - SAPPL' AS \"Department\",\n    '100' AS \"Approved NOS\",\n    '20' AS \"Buffer\",\n    '120' AS \"Total Approved NOS\",\n    '80' AS \"On Muster Roll\",\n    '30' AS \"Shift A\",\n    '30' AS \"Shift B\",\n    '20' AS \"Shift C\",\n    '10' AS \"Joined\",\n    '5' AS \"Absconding\",\n    '10' AS \"Resignation\",\n    '15' AS \"Eligible for Left\",\n    '70' AS \"Current Vacancy in NOS\",\n    '' AS \"Remarks\"\nFROM\n    `tabStaffing Plan`\n    \n    ",
+  "ref_doctype": "Staffing Plan",
+  "reference_report": null,
+  "report_name": "Manpower Planning",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Manpower Planning",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Manpower Planning",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "from_date",
+    "fieldtype": "Date",
+    "label": "From Date",
+    "mandatory": 0,
+    "options": null,
+    "parent": "Full and Final Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "to_date",
+    "fieldtype": "Date",
+    "label": "To Date",
+    "mandatory": 0,
+    "options": null,
+    "parent": "Full and Final Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "category",
+    "fieldtype": "Link",
+    "label": "Category",
+    "mandatory": 0,
+    "options": "Payroll Category",
+    "parent": "Full and Final Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "employment_type",
+    "fieldtype": "Link",
+    "label": "Employment Type",
+    "mandatory": 0,
+    "options": "Employment Type",
+    "parent": "Full and Final Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "employee",
+    "fieldtype": "Link",
+    "label": "Employee",
+    "mandatory": 0,
+    "options": "Employee",
+    "parent": "Full and Final Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "company",
+    "fieldtype": "Link",
+    "label": "Company",
+    "mandatory": 0,
+    "options": "Company",
+    "parent": "Full and Final Statement",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.955641",
+  "module": "Ambica HR",
+  "name": "Full and Final Statement",
+  "prepared_report": 0,
+  "query": "select\n'00004567' as \"Employee\",\n'Vijaykumar Virchandbhai Makwana' as \"Employee Name\",\n'Flat Looms' as \"Department\",\n'Jobber' as \"Designation\",\n'Permanent' as \"Employment Type\",\n'Monthly' as \"Category\",\n'Shri Ambica Polymer Pvt Ltd.' as \"Company\",\n'01-06-2013' as \"Probation Date\",\n'01-04-2022' as \"Resignation Date\",\n'30' as \"Notice Period (In days)\",\n'30-04-2022' as \"Date of Leaving\",\n'16-04-2022' as \"Last Present Date\",\n'14' as \"No of Days less than Notice Period\",\n'Yes' as \"Notice Period Deduction\",\n'8,615' as \"Notice Period Deduction Amount\",\n'8.88' as \"No of Years Completed\",\n'7,200' as \"Basic CTC\",\n'7,200' as \"HRA CTC\",\n'1,600' as \"Conveyance CTC\",\n'16000' as \"Gross CTC\",\n'615.38' as \"Rate per day for PL\",\n'553.85' as \"Rate per day for Bonus\",\n'12.2375' as \"Paid Days for Previous Year\",\n'248.9521' as \"Paid Days for Current Year\",\n'73.7625' as \"Present days for Current Year\",\n'3' as \"PL Allowable\",\n'1,846.00' as \"PL Amount\",\n'Skilled' as \"Category - Last Year Bonus\",\n'356.00' as \"Rate as per Category - Last Year Bonus\",\n'248.95' as \"Total Paid Days - Last Year Bonus\",\n'88,627' as \"Eligible Amount - Last Year Bonus\",\n'12.50' as \"Bonus Rate - Last Year Bonus\",\n'11,078.00' as \"Bonus Amount - Last Year Bonus\",\n'Skilled' as \"Category - Current Year Bonus\",\n'367.30' as \"Rate as per Category - Current Year Bonus\",\n'12.24' as \"Total Paid Days - Current Year Bonus\",\n'0' as \"Eligible Amount - Current Year Bonus\",\n'12.50' as \"Bonus Rate - Current Year Bonus\",\n'0' as \"Bonus Amount - Current Year Bonus\",\n'Eligible' as \"Gratuity Eligible\",\n'21,915.00' as \"Gratuity Amount\",\n'838279' as \"Gratuity Cheque No\",\n'08-08-2022' as \"Gratuity Cheque Date\",\n'001876' as \"Other Cheque No\",\n'10-10-2022' as \"Other Cheque Date\",\n'' as \"Remarks\"\nfrom\n`tabStaffing Plan`\n",
+  "ref_doctype": "Full and Final Statement",
+  "reference_report": null,
+  "report_name": "Full and Final Statement",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Full and Final Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Full and Final Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Full and Final Statement",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 0,
+  "columns": [
+   {
+    "fieldname": "employee",
+    "fieldtype": "Data",
+    "label": "Employee",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "employee_name",
+    "fieldtype": "Data",
+    "label": "Employee Name",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "department",
+    "fieldtype": "Data",
+    "label": "Department",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "designation",
+    "fieldtype": "Data",
+    "label": "Designation",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "category",
+    "fieldtype": "Data",
+    "label": "Category",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "date_of_joining",
+    "fieldtype": "Data",
+    "label": "Date of Joining",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "probation_date",
+    "fieldtype": "Data",
+    "label": "Probation Date",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "date_of_leaving",
+    "fieldtype": "Data",
+    "label": "Date of Leaving",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "jan",
+    "fieldtype": "Data",
+    "label": "January",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "feb",
+    "fieldtype": "Data",
+    "label": "February",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "mar",
+    "fieldtype": "Data",
+    "label": "March",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "grand_total",
+    "fieldtype": "Data",
+    "label": "Grand Total",
+    "options": null,
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   }
+  ],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "from_date",
+    "fieldtype": "Date",
+    "label": "From Date",
+    "mandatory": 0,
+    "options": "Now",
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "to_date",
+    "fieldtype": "Date",
+    "label": "To Date",
+    "mandatory": 0,
+    "options": "Now",
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.891615",
+  "module": "Ambica HR",
+  "name": "Employee wise Monthly Present Days",
+  "prepared_report": 0,
+  "query": "SELECT\n    at.employee AS \"Employee\",\n    at.employee_name AS \"Employee Name\",\n    em.department AS \"Department\",\n    em.designation AS \"Designation\",\n    em.employment_type AS \"Category\",\n    em.date_of_joining AS \"Date of Joining\",\n    em.probation_date AS \"Probation Date\",\n    em.relieving_date AS \"Date of Leaving\",\n    '' AS \"January\",\n    '' AS \"February\",\n    '' AS \"March\",\n    '' AS \"Grand Total\"\nFROM\n    `tabAttendance` at\nJOIN\n    `tabEmployee` em ON at.employee = em.employee\nGROUP BY\n    at.employee\n",
+  "ref_doctype": "Attendance",
+  "reference_report": null,
+  "report_name": "Employee wise Monthly Present Days",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Employee wise Monthly Present Days",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [
+   {
+    "default": null,
+    "fieldname": "month",
+    "fieldtype": "Select",
+    "label": "Month",
+    "mandatory": 0,
+    "options": "Jan\nFeb\nMar\nApril\nMay\nJune\nJuly\nAug\nSept\nOct\nNov\nDec",
+    "parent": "Employee Master Report",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   },
+   {
+    "default": null,
+    "fieldname": "year",
+    "fieldtype": "Select",
+    "label": "Year",
+    "mandatory": 0,
+    "options": "2022\n2023",
+    "parent": "Employee Master Report",
+    "parentfield": "filters",
+    "parenttype": "Report",
+    "wildcard_filter": 0
+   }
+  ],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.821168",
+  "module": "Ambica HR",
+  "name": "Employee Master Report",
+  "prepared_report": 0,
+  "query": "select\nem.employee as \"Employee ID\",\nem.employee_name as \"Employee Name\",\nem.department as \"Department\",\nem.designation as \"Designation\",\nem.branch as \"Branch\",\nem.gender as \"Gender\",\nem.date_of_birth as \"Date of Birth\",\nem.date_of_joining as \"Date of Joining\",\nem.probation_date as \"Probation Date\",\nem.payroll_category as \"Payroll Category\",\nem.skill_category as \"Skill Category\",\nem.village as \"Village\",\nem.area as \"Area/Taluka\",\nem.city as \"City/District\",\nem.state as \"State\",\nem.postal_code as \"Postal Code\",\nem.cell_number as \"Mobile No.\",\nCONCAT(ed.level, ' - ', ed.school_univ) AS \"Educational Qualification\",\nCONCAT(ew.company_name) AS \"Previous Work Experience\",\nem.month_days as \"Month Days\",\nem.week_of_days as \"Week Off Days\",\nem.holidays as \"Holidays\",\nem.week_off as \"Week Off\",\nem.default_shift as \"Shift\",\nMAX(CASE WHEN sd.salary_component = 'Basic' THEN sd.amount END) AS \"Basic\",\nMAX(CASE WHEN sd.salary_component = 'House Rent Allowance' THEN sd.amount END) AS \"House Rent Allowance\",\nMAX(CASE WHEN sd.salary_component = 'Conveyance' THEN sd.amount END) AS \"Conveyance\",\nMAX(CASE WHEN sd.salary_component = 'Provident Fund' THEN sd.amount END) AS \"Provident Fund\",\nMAX(CASE WHEN sd.salary_component = 'Professional Tax' THEN sd.amount END) AS \"Professional Tax\",\nem.gross_pay as \"Gross Pay\",\nem.net_pay as \"Net Pay\"\n\nfrom\n`tabEmployee` em\njoin `tabEmployee Education` as ed on em.name = ed.parent\njoin `tabEmployee External Work History` ew on em.name = ew.parent\njoin `tabSalary Detail` sd on em.name = sd.parent\nwhere\nsd.salary_component = 'Basic' OR sd.salary_component = 'House Rent Allowance' OR sd.salary_component = 'Conveyance' OR sd.salary_component = 'Provident Fund' OR sd.salary_component = 'Professional Tax'\n",
+  "ref_doctype": "Employee",
+  "reference_report": null,
+  "report_name": "Employee Master Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Employee Master Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Ambica HR-User"
+   },
+   {
+    "parent": "Employee Master Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Employee Master Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "Employee Master Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Employee Master Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "add_total_row": 1,
+  "columns": [
+   {
+    "fieldname": "04/22",
+    "fieldtype": "Data",
+    "label": "04/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "05/22",
+    "fieldtype": "Data",
+    "label": "05/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "06/22",
+    "fieldtype": "Data",
+    "label": "06/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "07/22",
+    "fieldtype": "Data",
+    "label": "07/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "08/22",
+    "fieldtype": "Data",
+    "label": "08/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "09/22",
+    "fieldtype": "Data",
+    "label": "09/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "10/22",
+    "fieldtype": "Data",
+    "label": "10/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "11/22",
+    "fieldtype": "Data",
+    "label": "11/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "12/22",
+    "fieldtype": "Data",
+    "label": "12/22",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "01/23",
+    "fieldtype": "Data",
+    "label": "01/23",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "02/23",
+    "fieldtype": "Data",
+    "label": "02/23",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "03/23",
+    "fieldtype": "Data",
+    "label": "03/23",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "total_days",
+    "fieldtype": "Data",
+    "label": "Total Days",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "daily_rate",
+    "fieldtype": "Data",
+    "label": "Daily Rate",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "eligible_amount_for_bonus_calculation",
+    "fieldtype": "Data",
+    "label": "Eligible Amount from Bonus Calculation",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "bonus",
+    "fieldtype": "Data",
+    "label": "Bonus %",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   },
+   {
+    "fieldname": "bonus_payable",
+    "fieldtype": "Data",
+    "label": "Bonus Payable",
+    "options": null,
+    "parent": "Employee Bonus Report",
+    "parentfield": "columns",
+    "parenttype": "Report",
+    "width": 0
+   }
+  ],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": null,
+  "modified": "2023-12-26 18:19:55.729596",
+  "module": "Ambica HR",
+  "name": "Employee Bonus Report",
+  "prepared_report": 0,
+  "query": "SELECT DISTINCT\n  26 as `04/22`,\n  27 as `05/22`,\n  24.9979 as `06/22`,\n  27 as `07/22`,\n  25 as `08/22`,\n  26 as `09/22`,\n  20 as `10/22`,\n  25 as `11/22`,\n  24 as `12/22`,\n  24 as `01/23`,\n  0 as `02/23`,\n  0 as `03/23`,\n  248.9979 as `total_days`,\n  371.3 as `daily_rate`,\n  92452.92027 as `eligible_amount_for_bonus_calculation`,\n  '12.5%%' as `bonus`,\n  11557 as `bonus_payable`\nFROM `tabAttendance`\n",
+  "ref_doctype": "Attendance",
+  "reference_report": null,
+  "report_name": "Employee Bonus Report",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Employee Bonus Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Ambica HR-User"
+   },
+   {
+    "parent": "Employee Bonus Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Employee Bonus Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee"
+   },
+   {
+    "parent": "Employee Bonus Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   },
+   {
+    "parent": "Employee Bonus Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Employee Self Service"
+   }
+  ]
+ }
+]

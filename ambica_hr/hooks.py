@@ -244,18 +244,18 @@ fixtures = [
             ],
         ]
     ]},
-    {"dt":"Custom Field","filters":[
-        [
-            "module","in",[
-               "Ambica HR"
-            ]
-        ]
-    ]},
     {"dt":"Client Script","filters":[
         [
             "module","in",[
                "Ambica HR"
             ],
+        ]
+    ]},
+    {"dt":"Custom Field","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ]
         ]
     ]},
     {"dt":"Property Setter","filters":[
@@ -265,10 +265,17 @@ fixtures = [
             ],
         ]
     ]},
-    {"dt":"Custom DocPerm","filters":[
+    {"dt":"Print Format","filters":[
         [
-            "role","in",[
-               "Ambica HR-User"
+            "module","in",[
+               "Ambica HR"
+            ],
+        ]
+    ]},
+    {"dt":"Report","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
             ],
         ]
     ]},
@@ -292,6 +299,31 @@ fixtures = [
                "Ambica HR"
             ],
         ]
-    ]}
+    ]},
+    {"dt":"Workflow State","filters":[
+        [
+            "name","in",[
+               "Review",
+            ],
+        ]
+    ]},
+    {"dt":"Workflow","filters":[
+        [
+            "name","in",[
+               "Salary Component Approval Flow",
+               "Employee Approval Flow"
+            ],
+        ]
+    ]},
+    {"dt":"Custom DocPerm","filters":[
+        [
+            "role","in",[
+               "Ambica HR-User"
+            ],
+        ]
+    ]},
+    
+    
+    
     
 ]
