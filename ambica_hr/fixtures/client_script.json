@@ -47,8 +47,8 @@
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
-  "enabled": 1,
-  "modified": "2023-12-19 19:11:12.244479",
+  "enabled": 0,
+  "modified": "2023-12-27 12:47:45.812577",
   "module": "Ambica HR",
   "name": "Set employee master read only",
   "script": "frappe.ui.form.on('Employee', {\n    onload: function (frm) {\n        // Check if the form is new\n        if (!frm.is_new()) {\n            console.log(\"hello\")\n            frm.set_read_only();\n        }\n    }\n});\n",
@@ -59,10 +59,10 @@
   "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
-  "modified": "2023-12-19 19:11:12.265651",
+  "modified": "2023-12-27 11:35:52.936472",
   "module": "Ambica HR",
   "name": "Fetch week off based on the selected holiday list",
-  "script": "frappe.ui.form.on('Employee', {\n\tholiday_list:function(frm) {\n\t    \n\t\tvar holiday_list = frm.doc.holiday_list;\n\t\t\n\n\t\tfrappe.db.get_value(\"Holiday List\", holiday_list, 'weekly_off')\n            .then(function(result) {\n                var week_off = result.message.weekly_off;\n                \n                frm.set_value('week_off', week_off);\n                frm.refresh_field('week_off');\n                frm.save();\n\n                \n            });\n         \n\t}\n});\n",
+  "script": "frappe.ui.form.on('Employee', {\n\tholiday_list:function(frm) {\n\t    \n\t\tvar holiday_list = frm.doc.holiday_list;\n\t\t\n\n\t\tfrappe.db.get_value(\"Holiday List\", holiday_list, 'weekly_off')\n            .then(function(result) {\n                var week_off = result.message.weekly_off;\n                \n                frm.set_value('custom_week_off', week_off);\n                frm.refresh_field('custom_week_off');\n                frm.save();\n\n                \n            });\n         \n\t}\n});\n",
   "view": "Form"
  },
  {
@@ -151,6 +151,42 @@
   "module": "Ambica HR",
   "name": "Mark Attendance button on Canteen Attendance Import",
   "script": "frappe.ui.form.on('Canteen Attendance Import', {\n\trefresh(frm) {\n\t\tfrm.add_custom_button(__('Mark Canteen Attendance'), function(){\n       \n    });\n\t}\n})\n",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee",
+  "enabled": 1,
+  "modified": "2023-12-27 19:08:25.837810",
+  "module": "Ambica HR",
+  "name": "Set Employee as Employee ID",
+  "script": "frappe.ui.form.on('Employee', {\n\tbefore_save(frm) {\n\t\tvar emp = frm.doc.employee;\n\t\tfrm.set_value('employee_number', emp);\n\t\tfrm.refresh_field('employee_number');\n\t\t\n\t}\n});",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee",
+  "enabled": 1,
+  "modified": "2023-12-27 19:08:19.475076",
+  "module": "Ambica HR",
+  "name": "Fetch Holiday List based on the Factory or Office",
+  "script": "frappe.ui.form.on('Employee', {\n\tcustom_factory_or_office:function(frm) {\n\t    if(cur_frm.doc.custom_factory_or_office === \"Factory\"){\n\t        \n\t    \n    \t\tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t    else if(cur_frm.doc.custom_factory_or_office === \"Office\"){\n\t        \tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_office\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t},\n    \trefresh:function(frm) {\n\t    if(cur_frm.doc.custom_factory_or_office === \"Factory\"){\n\t        \n\t    \n    \t\tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t    else if(cur_frm.doc.custom_factory_or_office === \"Office\"){\n\t        \tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_office\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee Promotion",
+  "enabled": 1,
+  "modified": "2023-12-27 19:08:12.557012",
+  "module": "Ambica HR",
+  "name": "Open Child table when promotion is on salary component",
+  "script": "frappe.ui.form.on('Employee Promotion', {\n    refresh(frm) {\n        var sal_com = frm.doc.salary_component;\n\n        frm.fields_dict[\"salary_promotion_details\"].grid.add_custom_button(__('Add Salary Property'), function() {\n            // Fetch the list of fields from the \"Salary Component\" doctype\n            frappe.model.with_doctype('Salary Component', function() {\n                var fields = frappe.get_meta('Salary Component').fields;\n\n                // Extract field names\n                var field_names = fields.map(function(field) {\n                    return field.fieldname;\n                });\n\n                // Create a custom dialog box with a dropdown\n                frappe.prompt([\n                    {\n                        fieldname: 'property',\n                        label: __('Property'),\n                        fieldtype: 'Link',\n                        options: 'Salary Component', // DocType name\n                        get_query: function(doc, cdt, cdn) {\n                            return {\n                                query: function() {\n                                    return {\n                                        filters: [['Salary Component', 'fieldname', 'in', field_names]]\n                                    };\n                                }\n                            };\n                        },\n                        reqd: true\n                    },\n                    {\n                        fieldname: 'current',\n                        label: __('Current'),\n                        fieldtype: 'Data',\n                        reqd: true\n                    },\n                    {\n                        fieldname: 'new',\n                        label: __('New'),\n                        fieldtype: 'Data',\n                        reqd: true\n                    }\n                    // Add more fields as needed for your child table\n                ], function(values){\n                    // Handle the values submitted\n                    console.log(values);\n                }, __('Add Salary Property'));\n            });\n        });\n    }\n});\n\n\n\n\n\n\n\n\n\n               // // Callback function on dialog submit\n                // frm.fields_dict['salary_promotion_details'].grid.df.get_query = function() {\n                //     return {\n                //         filters: {\n                //             // Add filters based on the values entered in the dialog\n                //             property: values.property,\n                //             current: values.current,\n                //             new:values.new\n                //         }\n                //     };\n                // };\n\n                // // Open the child table grid form\n                // frm.fields_dict['salary_promotion_details'].grid.get_field('property').grid.open_grid_form();",
   "view": "Form"
  }
 ]

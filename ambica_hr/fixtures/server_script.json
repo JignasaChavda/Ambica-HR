@@ -17,5 +17,25 @@
   "reference_doctype": "Employee",
   "script": "emp = doc.employee\ncur_assignment = doc.name\n\nemployee = frappe.get_doc(\"Employee\", emp)\nemp_assignment = employee.salary_structure_assignment\n\nif cur_assignment == emp_assignment:\n    employee.salary_structure_assignment = \"\"\n    employee.salary_structure = \"\"\n    employee.get(\"earnings\").clear()\n    employee.save()\n",
   "script_type": "DocType Event"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Save",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2023-12-27 19:08:38.001454",
+  "module": "Ambica HR",
+  "name": "Set LWF as deduction in salary slip",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Salary Slip",
+  "script": "# import frappe\n# from datetime import datetime\n# import calendar\n# Ensure start_date is a string\n# import_module = frappe.get_doc('Module', 'getdate')\n# # import_module = frappe.get_module('getdate')\n# # from frappe.utils.data import getdate\n\n# # Ensure start_date is a string\n# start_date_str = str(doc.start_date)\n\n# # Extract month\n# try:\n#     year_month = getdate(start_date_str)\n#     month = year_month.month\n# except ValueError:\n#     frappe.throw(\"Invalid date format\")\n\n# Now 'month' variable contains the month extracted from the start_date\n\n# start_date = doc.start_date\n# date_object = datetime.strptime(start_date, '%Y-%m-%d')\n# month = date_object.month\n\n# last_day = calendar.monthrange(2023, month)[1]\n# filters={'posting_date': ['between', [f'2023-{month:02d}-01', f'2023-{month:02d}-{last_day}']]}\n    \nlwf = frappe.get_all(\n            \"Labour Welfare Fund\",\n            # filters=filters,\n            fields='name'\n        )\n\nemployee_list = []\nlwf_ids = [data['name'] for data in lwf]\nfor lwf_data in lwf_ids:\n        lwf_doc = frappe.get_doc(\"Labour Welfare Fund\", lwf_data)\n        child_data = lwf_doc.get(\"lwf_deduction\")\n        for id in child_data:\n                employee_list.append((lwf_data, id.employee, id.component, id.employee_contribution))\n# frappe.throw(f\"data: {employee_list}\")\n      \n# component_value = None  \n# employee_contribution_value = None\n\n# for lwf_id, employee_id, component, employee_contribution in employee_list:\n#     if employee_id == doc.employee:\n#         frappe.append(doc, 'deductions', {\n#             'salary_component': component,\n#             'amount': employee_contribution\n#         })\n\n# doc.save()\nfor lwf_id, employee_id, component, employee_contribution in employee_list:\n    # if employee_id == doc.employee and not any(d.salary_component == component for d in doc.deductions):\n    #     doc.append('deductions', {\n    #         'salary_component': component,\n    #         'amount': employee_contribution\n    #     })\n     if employee_id == doc.employee:\n        deduction_exists = False\n        for row in doc.deductions:\n            if row.salary_component == component:\n                deduction_exists = True\n                break\n\n        if not deduction_exists:\n            doc.append('deductions', {\n                'salary_component': component,\n                'amount': employee_contribution\n            })\n\n# Check if the deduction is not already in the child table and then append\n# for data in employee_list:\n#     if doc.employee == data.get('employee') and not any(d.get('salary_component') == data.get('salary_component') for d in doc.deductions):\n#         doc.append('deductions', data)\n\n# Save the document outside the loop to avoid recursion\n# doc.save()\n\n# doc.save()\n\n",
+  "script_type": "DocType Event"
  }
 ]

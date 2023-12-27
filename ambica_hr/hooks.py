@@ -279,6 +279,13 @@ fixtures = [
             ],
         ]
     ]},
+    {"dt":"Page","filters":[
+        [
+            "module","in",[
+               "Ambica HR"
+            ],
+        ]
+    ]},
     {"dt":"Role","filters":[
         [
             "name","in",[

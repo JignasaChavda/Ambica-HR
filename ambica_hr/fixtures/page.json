@@ -1,0 +1,38 @@
+[
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "content": null,
+  "docstatus": 0,
+  "doctype": "Page",
+  "icon": null,
+  "modified": "2023-12-27 18:56:57.497702",
+  "module": "Ambica HR",
+  "name": "attendance-detail",
+  "page_name": "attendance-detail",
+  "restrict_to_domain": null,
+  "roles": [],
+  "script": null,
+  "standard": "Yes",
+  "style": null,
+  "system_page": 0,
+  "title": "Attendance Detail"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "content": null,
+  "docstatus": 0,
+  "doctype": "Page",
+  "icon": null,
+  "modified": "2023-12-27 18:57:28.409829",
+  "module": "Ambica HR",
+  "name": "employee-details",
+  "page_name": "employee-details",
+  "restrict_to_domain": null,
+  "roles": [],
+  "script": null,
+  "standard": "Yes",
+  "style": null,
+  "system_page": 0,
+  "title": "Employee Details"
+ }
+]

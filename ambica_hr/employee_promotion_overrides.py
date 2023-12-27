@@ -73,42 +73,45 @@ class EmployeePromotion(Document):
 
 	def on_submit(self):
 		
-		if self.based_on == "On Approval":
+		if self.value == "Employee":
+			if self.based_on == "On Approval":
 
-			employee = frappe.get_doc("Employee", self.employee)
-			Emp_Details = frappe.get_all("Employee Property History", filters={"parent": self.name}, fields=['property', 'current', 'new', 'fieldname'], order_by="idx Asc")
+				employee = frappe.get_doc("Employee", self.employee)
+				Emp_Details = frappe.get_all("Employee Property History", filters={"parent": self.name}, fields=['property', 'current', 'new', 'fieldname'], order_by="idx Asc")
 
-			for data in Emp_Details:
-				Property = data.property
-				Current_value = data.current
-				New_value = data.new
-				Fieldname = data.fieldname
+				for data in Emp_Details:
+					Property = data.property
+					Current_value = data.current
+					New_value = data.new
+					Fieldname = data.fieldname
 
-				setattr(employee, Fieldname, New_value)
+					setattr(employee, Fieldname, New_value)
+					employee.save()
+
+					for record in employee.custom_employee_internal_work_history:
+						if record.property == Property:
+							Old_promotion_datetime = datetime.datetime.strptime(str(record.to_date), "%Y-%m-%d")
+							After_old_promotion_date = Old_promotion_datetime + datetime.timedelta(days=1)
+							From_date = After_old_promotion_date
+							break
+					else:
+						ans_from_date = datetime.datetime.strptime(str(employee.creation), "%Y-%m-%d %H:%M:%S.%f")
+						From_date = ans_from_date.date()
+
+					promotion_date_datetime = datetime.datetime.strptime(self.promotion_date, "%Y-%m-%d")
+					one_day_before_promotion = promotion_date_datetime - datetime.timedelta(days=1)
+
+					Child_history = employee.append("custom_employee_internal_work_history", {})
+					Child_history.property = Property
+					Child_history.old_value = Current_value
+					Child_history.employee_promotion = self.name
+					Child_history.field_name = Fieldname
+					Child_history.from_date = From_date
+					Child_history.to_date = one_day_before_promotion
+
 				employee.save()
-
-				for record in employee.employee_old_details:
-					if record.property == Property:
-						Old_promotion_datetime = datetime.datetime.strptime(str(record.to_date), "%Y-%m-%d")
-						After_old_promotion_date = Old_promotion_datetime + datetime.timedelta(days=1)
-						From_date = After_old_promotion_date
-						break
-				else:
-					ans_from_date = datetime.datetime.strptime(str(employee.creation), "%Y-%m-%d %H:%M:%S.%f")
-					From_date = ans_from_date.date()
-
-				promotion_date_datetime = datetime.datetime.strptime(self.promotion_date, "%Y-%m-%d")
-				one_day_before_promotion = promotion_date_datetime - datetime.timedelta(days=1)
-
-				Child_history = employee.append("employee_old_details", {})
-				Child_history.property = Property
-				Child_history.old_value = Current_value
-				Child_history.employee_promotion = self.name
-				Child_history.field_name = Fieldname
-				Child_history.from_date = From_date
-				Child_history.to_date = one_day_before_promotion
-
-			employee.save()
+		elif self.value == "Salary Component":
+			frappe.msgprint("salary")
 
 
 	def on_cancel(self):
