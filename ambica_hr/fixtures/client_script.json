@@ -123,17 +123,6 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
-  "dt": "Branch",
-  "enabled": 1,
-  "modified": "2023-12-19 19:11:12.389372",
-  "module": "Ambica HR",
-  "name": "Filter account head in branch",
-  "script": "cur_frm.cscript.onload = function(frm) {\n\n    cur_frm.set_query(\"account_head\", \"accounts\", function(doc, cdt, cdn) {\n        var child = locals[cdt][cdn]; \n\n        \n        var itemcode = child.item_code;\n      \n\n        return {\n            \"filters\": {\n                \"parent_account\":\"Accounts Payable - SAPPL\"\n              \n            }\n        };\n    });\n    \n};\n",
-  "view": "Form"
- },
- {
-  "docstatus": 0,
-  "doctype": "Client Script",
   "dt": "Employee Leave Encashment",
   "enabled": 1,
   "modified": "2023-12-19 19:11:12.410590",
@@ -159,26 +148,13 @@
   "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
-  "modified": "2023-12-27 19:08:25.837810",
-  "module": "Ambica HR",
-  "name": "Set Employee as Employee ID",
-  "script": "frappe.ui.form.on('Employee', {\n\tbefore_save(frm) {\n\t\tvar emp = frm.doc.employee;\n\t\tfrm.set_value('employee_number', emp);\n\t\tfrm.refresh_field('employee_number');\n\t\t\n\t}\n});",
-  "view": "Form"
- },
- {
-  "_liked_by": "[\"Administrator\"]",
-  "docstatus": 0,
-  "doctype": "Client Script",
-  "dt": "Employee",
-  "enabled": 1,
-  "modified": "2023-12-27 19:08:19.475076",
+  "modified": "2024-01-01 09:36:59.858430",
   "module": "Ambica HR",
   "name": "Fetch Holiday List based on the Factory or Office",
-  "script": "frappe.ui.form.on('Employee', {\n\tcustom_factory_or_office:function(frm) {\n\t    if(cur_frm.doc.custom_factory_or_office === \"Factory\"){\n\t        \n\t    \n    \t\tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t    else if(cur_frm.doc.custom_factory_or_office === \"Office\"){\n\t        \tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_office\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t},\n    \trefresh:function(frm) {\n\t    if(cur_frm.doc.custom_factory_or_office === \"Factory\"){\n\t        \n\t    \n    \t\tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t    else if(cur_frm.doc.custom_factory_or_office === \"Office\"){\n\t        \tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_office\":1\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t}\n})",
+  "script": "frappe.ui.form.on('Employee', {\n\tcustom_factory_or_office:function(frm) {\n\t    if(cur_frm.doc.custom_factory_or_office === \"Factory\"){\n\t        \n\t    \n    \t\tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory_or_office\": \"Factory\"\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t    else if(cur_frm.doc.custom_factory_or_office === \"Office\"){\n\t        \tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory_or_office\": \"Office\"\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t},\n    \trefresh:function(frm) {\n\t    if(cur_frm.doc.custom_factory_or_office === \"Factory\"){\n\t        \n\t    \n    \t\tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory_or_office\": \"Factory\"\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t    else if(cur_frm.doc.custom_factory_or_office === \"Office\"){\n\t        \tfrm.set_query(\"holiday_list\", function(){\n    \t\t    return {\n    \t\t        filters:{\n    \t\t            \"custom_factory_or_office\": \"Office\"\n    \t\t        }\n    \t\t    }\n    \t\t})\n\t    }\n\t}\n})",
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee Promotion",
@@ -187,6 +163,42 @@
   "module": "Ambica HR",
   "name": "Open Child table when promotion is on salary component",
   "script": "frappe.ui.form.on('Employee Promotion', {\n    refresh(frm) {\n        var sal_com = frm.doc.salary_component;\n\n        frm.fields_dict[\"salary_promotion_details\"].grid.add_custom_button(__('Add Salary Property'), function() {\n            // Fetch the list of fields from the \"Salary Component\" doctype\n            frappe.model.with_doctype('Salary Component', function() {\n                var fields = frappe.get_meta('Salary Component').fields;\n\n                // Extract field names\n                var field_names = fields.map(function(field) {\n                    return field.fieldname;\n                });\n\n                // Create a custom dialog box with a dropdown\n                frappe.prompt([\n                    {\n                        fieldname: 'property',\n                        label: __('Property'),\n                        fieldtype: 'Link',\n                        options: 'Salary Component', // DocType name\n                        get_query: function(doc, cdt, cdn) {\n                            return {\n                                query: function() {\n                                    return {\n                                        filters: [['Salary Component', 'fieldname', 'in', field_names]]\n                                    };\n                                }\n                            };\n                        },\n                        reqd: true\n                    },\n                    {\n                        fieldname: 'current',\n                        label: __('Current'),\n                        fieldtype: 'Data',\n                        reqd: true\n                    },\n                    {\n                        fieldname: 'new',\n                        label: __('New'),\n                        fieldtype: 'Data',\n                        reqd: true\n                    }\n                    // Add more fields as needed for your child table\n                ], function(values){\n                    // Handle the values submitted\n                    console.log(values);\n                }, __('Add Salary Property'));\n            });\n        });\n    }\n});\n\n\n\n\n\n\n\n\n\n               // // Callback function on dialog submit\n                // frm.fields_dict['salary_promotion_details'].grid.df.get_query = function() {\n                //     return {\n                //         filters: {\n                //             // Add filters based on the values entered in the dialog\n                //             property: values.property,\n                //             current: values.current,\n                //             new:values.new\n                //         }\n                //     };\n                // };\n\n                // // Open the child table grid form\n                // frm.fields_dict['salary_promotion_details'].grid.get_field('property').grid.open_grid_form();",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee",
+  "enabled": 1,
+  "modified": "2024-01-01 09:37:00.078336",
+  "module": "Ambica HR",
+  "name": "Set permanent address based on the current address",
+  "script": "frappe.ui.form.on('Employee', {\n\tcustom_address_line_1:function(frm) {\n\t\tvar add_line_1 = frm.doc.custom_address_line_1;\n\t\t\n\t\tfrm.set_value('custom_address_line_1_permanent',add_line_1);\n\t\tfrm.refresh_field('custom_address_line_1_permanent');\n\t},\n\tcustom_address_line_2:function(frm) {\n\t\tvar add_line_1 = frm.doc.custom_address_line_2;\n\t\t\n\t\tfrm.set_value('custom_address_line_2_permanent',add_line_1);\n\t\tfrm.refresh_field('custom_address_line_2_permanent');\n\t},\n\tcustom_village:function(frm){\n\t    var village = frm.doc.custom_village;\n\t\t\n\t\tfrm.set_value('custom_village_permanent',village);\n\t\tfrm.refresh_field('custom_village_permanent');\n\t},\n\tafter_save:function(frm){\n\t    var add_line_1 = frm.doc.custom_address_line_1;\n\t    var add_line_1 = frm.doc.custom_address_line_2;\n\t    var village = frm.doc.custom_village;\n\t    \n\t    frm.set_value('custom_address_line_1_permanent',add_line_1);\n\t    frm.set_value('custom_address_line_2_permanent',add_line_1);\n\t    frm.set_value('custom_village_permanent',village);\n\t    \n\t    frm.refresh_field('custom_address_line_1_permanent');\n\t    frm.refresh_field('custom_address_line_2_permanent');\n\t    frm.refresh_field('custom_village_permanent');\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Branch",
+  "enabled": 1,
+  "modified": "2024-01-01 09:37:00.175505",
+  "module": "Ambica HR",
+  "name": "Filter account head in branch",
+  "script": "frappe.ui.form.on('Branch', {\n    refresh: function(frm) {\n        frm.fields_dict['custom_accounts'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {\n            var parentCompany = frm.doc.custom_company;\n\n            if (parentCompany === \"Shri Ambica Polymer Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAPPL'\n                    }\n                };\n            } else if (parentCompany === \"Shri Ambica Masterbatch Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAMPL'\n                    }\n                };\n            } else {\n                return {};\n            }\n        };\n    }\n});\n\n",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee",
+  "enabled": 1,
+  "modified": "2024-01-01 09:37:00.292650",
+  "module": "Ambica HR",
+  "name": "Set Employee as Employee ID",
+  "script": "frappe.ui.form.on('Employee', {\n\tbefore_save(frm) {\n\t\tvar emp = frm.doc.employee;\n\t\tfrm.set_value('employee_number', emp);\n\t\tfrm.refresh_field('employee_number');\n\t\t\n\t}\n});",
   "view": "Form"
  }
 ]

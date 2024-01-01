@@ -19,8 +19,10 @@ class SalaryStructureAssignment(Document):
 		CTC = self.base
 
 		basic_amount = 0
-		pf_acc_1 = 0 
-		pf_acc_10 = 0
+		
+
+		
+		
 
 		ans = frappe.db.get_list("Salary Structure Assignment", filters={"employee": emp, "docstatus": 1}, fields=["name","salary_structure"], order_by="creation DESC", limit=1, as_list=True)
 		current_assignment = ans[0][0]
@@ -29,17 +31,14 @@ class SalaryStructureAssignment(Document):
 			frappe.db.set_value("Employee", emp, 'custom_salary_structure_assignment', current_assignment)
 			frappe.db.set_value("Employee", emp, 'custom_salary_structure', current_structure)
 
+			
 			employee = frappe.get_doc("Employee", emp)
-			for child in employee.get("custom_earnings"):
-				if child.earning_component_type == "Basic Pay":
-					basic_amount = child.amount
-				if child.pf_account_contribution == "Employer's Contri A/C No. 1":
-					pf_acc_1 = child.amount
-				if child.pf_account_contribution == "Employer's Contri A/C No. 10":
-					pf_acc_10 = child.amount
 
+					
 			employee.get("custom_earnings").clear()
 			employee.get("custom_deductions").clear()
+			
+			
 
 			salary_components = frappe.get_all("Salary Detail", filters={"parent": current_structure}, fields=['salary_component', 'formula'], order_by="idx Asc")
 			for component in salary_components:
@@ -57,15 +56,35 @@ class SalaryStructureAssignment(Document):
 					if component_type == "Earning":
 						if earning_component_type in ["Basic Pay", "HRA", "Conveyance Allowance"]:
 							if component_formula:
-								context = {"base": CTC, "employment_type": employee.employment_type, "custom_payroll_category":employee.custom_payroll_category}
-								result = eval(component_formula, context)
-								frappe.msgprint(str(result))
-								if result is not None:
-									new_earning = employee.append("custom_earnings", {})
-									new_earning.salary_component = component_name
-									new_earning.amount = result
-									new_earning.annual_amount = result*12
-									employee.save()
+								if earning_component_type == "Basic Pay":
+									context = {"base": CTC, "employment_type": employee.employment_type, "custom_payroll_category":employee.custom_payroll_category}
+									basic_result = eval(component_formula, context)
+									
+									if basic_result is not None:
+										new_earning = employee.append("custom_earnings", {})
+										new_earning.salary_component = component_name
+										new_earning.custom_component_type = earning_component_type
+										new_earning.amount = basic_result
+										# new_earning.annual_amount = result*12
+										basic_amount = new_earning.amount
+										
+										employee.save()
+								
+										
+									
+							
+
+								elif earning_component_type in ["HRA", "Conveyance Allowance"]:
+									context = {"base": CTC, "employment_type": employee.employment_type, "custom_payroll_category":employee.custom_payroll_category}
+									result = eval(component_formula, context)
+									
+									if result is not None:
+										new_earning = employee.append("custom_earnings", {})
+										new_earning.salary_component = component_name
+										new_earning.custom_component_type = earning_component_type
+										new_earning.amount = result
+										# new_earning.annual_amount = result*12
+										employee.save()
 							else:
 								if result is not None:
 									new_earning = employee.append("custom_earnings", {})
@@ -81,6 +100,7 @@ class SalaryStructureAssignment(Document):
 								if result is not None:
 									new_earning = employee.append("benefits", {})
 									new_earning.salary_component = component_name
+									new_earning.custom_component_type = earning_component_type
 									new_earning.amount = result
 									new_earning.annual_amount = result*12
 									employee.save()
@@ -91,45 +111,72 @@ class SalaryStructureAssignment(Document):
 									new_earning.amount = ''
 									new_earning.annual_amount = 0
 									employee.save()
+			
+					
+					elif component_type == "Deduction":
+						
+						if (ded_component_type == "Provident Fund" and pf_contribution == "Employee's Contri A/C No. 1"):
 							
 
 
-					elif component_type == "Deduction":
-						if (ded_component_type == "Provident Fund" and pf_contribution == "Employee's Contri A/C No. 1") or ded_component_type in  ["Professional Tax","Canteen Deduction"]:
-							if component_formula:
-								context = {"B":basic_amount,"base": CTC, "employment_type": employee.employment_type, "custom_payroll_category":employee.custom_payroll_category}
-								result = eval(component_formula, context)
-								if result is not None:
-									new_earning = employee.append("custom_deductions", {})
-									new_earning.salary_component = component_name
-									new_earning.amount = result
-									new_earning.annual_amount = result*12
-									employee.save()
-							else:
-								if result is not None:
-									new_earning = employee.append("custom_deductions", {})
-									new_earning.salary_component = component_name
-									new_earning.amount = ''
-									new_earning.annual_amount = 0
-									employee.save()
 
-						elif ded_component_type == "Provident Fund" and pf_contribution ==  "Employer's Total Contribution (A/C No.1+A/C No.10)":
-							if component_formula:
-								context = {"PF_1":pf_acc_1, "PF_10":pf_acc_10}
-								result = eval(component_formula, context)
-								if result is not None:
-									new_earning = employee.append("custom_benefits", {})
-									new_earning.salary_component = component_name
-									new_earning.amount = result
-									new_earning.annual_amount = result*12
-									employee.save()
-							else:
-								if result is not None:
-									new_earning = employee.append("custom_benefits", {})
-									new_earning.salary_component = component_name
-									new_earning.amount = ''
-									new_earning.annual_amount = 0
-									employee.save()
+
+							
+					# 		if component_formula:
+								
+
+								# context = {"B":basic_amount,"base": CTC, 
+								# result = eval(component_formula, context)
+								# frappe.msgprint(str(component_name))
+								# frappe.msgprint(str(basic_amount))
+								
+									
+
+
+								
+									# if child.pf_account_contribution == "Employer's Contri A/C No. 1":
+									# 	pf_acc_1 = child.amount
+									# if child.pf_account_contribution == "Employer's Contri A/C No. 10":
+									# 	pf_acc_10 = child.amount
+								
+										
+										
+										# frappe.msgprint(str(result))
+										# if result is not None:
+										# 	new_earning = employee.append("custom_deductions", {})
+										# 	new_earning.salary_component = component_name
+										# 	new_earning.custom_component_type = ded_component_type
+										# 	new_earning.amount = result
+										# 	new_earning.annual_amount = result*12
+										# 	employee.save()
+										# else:
+										# 	if result is not None:
+										# 		new_earning = employee.append("custom_deductions", {})
+										# 		new_earning.salary_component = component_name
+										# 		new_earning.custom_component_type = ded_component_type
+										# 		new_earning.amount = ''
+										# 		new_earning.annual_amount = 0
+										# 		employee.save()
+
+						# elif ded_component_type == "Provident Fund" and pf_contribution ==  "Employer's Total Contribution (A/C No.1+A/C No.10)":
+						# 	if component_formula:
+						# 		context = {"PF_1":pf_acc_1, "PF_10":pf_acc_10}
+						# 		result = eval(component_formula, context)
+						# 		if result is not None:
+						# 			new_earning = employee.append("custom_benefits", {})
+						# 			new_earning.salary_component = component_name
+						# 			new_earning.custom_component_type = ded_component_type
+						# 			new_earning.amount = result
+						# 			new_earning.annual_amount = result*12
+						# 			employee.save()
+						# 	else:
+						# 		if result is not None:
+						# 			new_earning = employee.append("custom_benefits", {})
+						# 			new_earning.salary_component = component_name
+						# 			new_earning.custom_component_type = ded_component_type
+						# 			new_earning.amount = ''
+						# 			new_earning.annual_amount = 0
+						# 			employee.save()
 					
 
     

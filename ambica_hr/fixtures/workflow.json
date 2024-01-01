@@ -1,6 +1,5 @@
 [
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Employee",
@@ -87,7 +86,6 @@
   "workflow_state_field": "workflow_state"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Salary Component",
