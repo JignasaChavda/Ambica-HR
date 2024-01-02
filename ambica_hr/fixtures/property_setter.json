@@ -1328,7 +1328,6 @@
   "value": "1"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Salary Component",
   "docstatus": 0,
@@ -1745,7 +1744,6 @@
   "value": "[\"holiday_list_name\", \"from_date\", \"to_date\", \"column_break_4\", \"total_holidays\", \"custom_factory_or_office\", \"add_weekly_holidays\", \"weekly_off\", \"get_weekly_off_dates\", \"add_local_holidays\", \"country\", \"subdivision\", \"get_local_holidays\", \"holidays_section\", \"holidays\", \"clear_table\", \"section_break_9\", \"color\"]"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Salary Component",
   "docstatus": 0,
@@ -1762,7 +1760,6 @@
   "value": "[\"workflow_state\", \"overview_tab\", \"salary_component\", \"status\", \"salary_component_abbr\", \"type\", \"description\", \"component_type\", \"pf_account_contribution\", \"canteen_type\", \"employee_contribution\", \"employer_contribution\", \"earning_component_type\", \"custom_standard_gratuity_days\", \"custom_difference_type\", \"custom_section_code\", \"incentive_type\", \"bonus_rate\", \"column_break_4\", \"depends_on_payment_days\", \"is_tax_applicable\", \"deduct_full_tax_on_selected_payroll_date\", \"variable_based_on_taxable_salary\", \"is_income_tax_component\", \"exempted_from_income_tax\", \"round_to_the_nearest_integer\", \"statistical_component\", \"do_not_include_in_total\", \"remove_if_zero_valued\", \"disabled\", \"section_break_5\", \"accounts\", \"configure_component_tab\", \"condition_and_formula\", \"condition\", \"amount\", \"amount_based_on_formula\", \"formula\", \"column_break_28\", \"help\", \"rate_details\", \"old_changes\", \"flexible_benefits_tab\", \"is_flexible_benefit\", \"max_benefit_amount\", \"column_break_9\", \"pay_against_benefit_claim\", \"only_tax_impact\", \"create_separate_payment_entry_against_benefit_claim\"]"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Salary Structure Assignment",
   "docstatus": 0,
@@ -1779,7 +1776,6 @@
   "value": "employee.ctc"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Salary Detail",
   "docstatus": 0,
