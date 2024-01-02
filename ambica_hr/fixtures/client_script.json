@@ -4,10 +4,10 @@
   "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
-  "modified": "2023-12-19 19:11:11.944373",
+  "modified": "2024-01-02 11:35:36.315389",
   "module": "Ambica HR",
   "name": "Set height of custom field",
-  "script": "frappe.ui.form.on('Employee', {\n\trefresh: function(frm) {\n\t    var fields = ['custom_religion','custom_witness_name_1','custom_witness_name_2','custom_whatsapp_no','custom_address_line_1','custom_address_line_2','custom_address_line_2_permanent','custom_address_line_1_permanent','custom_canteen_card_no','custom_aadhaar_number','custom_uan_number','custom_bank_branch','custom_salary_structure','custom_father_occupation']\n\t\tfields.forEach(function(field) {\n            var $field = frm.fields_dict[field];\n            if ($field && $field.$input) {\n                $field.$input.css({'height': '33px'});\n            }\n        });\n\t}\n})\n",
+  "script": "frappe.ui.form.on('Employee', {\n\trefresh: function(frm) {\n\t    var fields = ['custom_remarks','custom_religion','custom_witness_name_1','custom_witness_name_2','custom_whatsapp_no','custom_address_line_1','custom_address_line_2','custom_address_line_2_permanent','custom_address_line_1_permanent','custom_canteen_card_no','custom_bank_branch','custom_salary_structure','custom_father_occupation']\n\t\tfields.forEach(function(field) {\n            var $field = frm.fields_dict[field];\n            if ($field && $field.$input) {\n                $field.$input.css({'height': '33px'});\n            }\n        });\n\t}\n})\n",
   "view": "Form"
  },
  {
@@ -178,23 +178,24 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
-  "dt": "Branch",
-  "enabled": 1,
-  "modified": "2024-01-01 09:37:00.175505",
-  "module": "Ambica HR",
-  "name": "Filter account head in branch",
-  "script": "frappe.ui.form.on('Branch', {\n    refresh: function(frm) {\n        frm.fields_dict['custom_accounts'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {\n            var parentCompany = frm.doc.custom_company;\n\n            if (parentCompany === \"Shri Ambica Polymer Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAPPL'\n                    }\n                };\n            } else if (parentCompany === \"Shri Ambica Masterbatch Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAMPL'\n                    }\n                };\n            } else {\n                return {};\n            }\n        };\n    }\n});\n\n",
-  "view": "Form"
- },
- {
-  "docstatus": 0,
-  "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
   "modified": "2024-01-01 09:37:00.292650",
   "module": "Ambica HR",
   "name": "Set Employee as Employee ID",
   "script": "frappe.ui.form.on('Employee', {\n\tbefore_save(frm) {\n\t\tvar emp = frm.doc.employee;\n\t\tfrm.set_value('employee_number', emp);\n\t\tfrm.refresh_field('employee_number');\n\t\t\n\t}\n});",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Branch",
+  "enabled": 1,
+  "modified": "2024-01-01 09:37:00.175505",
+  "module": "Ambica HR",
+  "name": "Filter account head in branch",
+  "script": "frappe.ui.form.on('Branch', {\n    refresh: function(frm) {\n        frm.fields_dict['custom_accounts'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {\n            var parentCompany = frm.doc.custom_company;\n\n            if (parentCompany === \"Shri Ambica Polymer Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAPPL'\n                    }\n                };\n            } else if (parentCompany === \"Shri Ambica Masterbatch Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAMPL'\n                    }\n                };\n            } else {\n                return {};\n            }\n        };\n    }\n});\n\n",
   "view": "Form"
  }
 ]

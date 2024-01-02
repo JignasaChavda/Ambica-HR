@@ -22,6 +22,10 @@ class SalaryStructureAssignment(Document):
 		pf_acc_1 = 0
 		pf_acc_10 = 0
 		
+		lunch_ded = 0
+		dinner_ded = 0
+		tea_ded = 0
+
 		
 
 		
@@ -122,13 +126,16 @@ class SalaryStructureAssignment(Document):
 
 				
 				# Deductions
-				deduction_component_details = frappe.get_all("Salary Component", filters={"name": component_name, "type": "Deduction"}, fields=["name","type", "is_income_tax_component", "component_type", "pf_account_contribution", "formula", "canteen_type"])
+				deduction_component_details = frappe.get_all("Salary Component", filters={"name": component_name, "type": "Deduction"}, fields=["name","type", "is_income_tax_component", "component_type", "pf_account_contribution", "formula", "canteen_type", "amount"])
 				for com in deduction_component_details:
 					deduction_com_nm = com.name
 					deduction_com_type = com.component_type
 					pf_type = com.pf_account_contribution
 					deduction_com_formula = com.formula
 					canteen_type = com.canteen_type
+					deduction_com_amount = com.amount
+					
+
 
 					if (deduction_com_type == "Provident Fund"):
 						if (pf_type == "Employer's Contri A/C No. 1"):
@@ -176,7 +183,7 @@ class SalaryStructureAssignment(Document):
 								employee.save()
 
 			
-					elif deduction_com_type in  ["Professional Tax","Canteen Deduction"]:
+					elif (deduction_com_type == "Professional Tax"):
 						if deduction_com_formula:
 							context = {"B":basic_amount,"base": CTC, "employment_type": employee.employment_type, "custom_payroll_category":employee.custom_payroll_category}
 							result = eval(deduction_com_formula, context)
@@ -187,31 +194,32 @@ class SalaryStructureAssignment(Document):
 								new_earning.annual_amount = result*12
 								employee.save()
 						else:
-								new_earning = employee.append("custom_benefits", {})
-								new_earning.salary_component = component_name
-								new_earning.amount = 0
-								# new_earning.annual_amount = result*12
-								employee.save()
-
-					elif (deduction_com_type == "Canteen Deduction") and (canteen_type == None):
-						if deduction_com_formula:
-							context = {"B":basic_amount,"base": CTC, "employment_type": employee.employment_type, "custom_payroll_category":employee.custom_payroll_category}
-							result = eval(deduction_com_formula, context)
-							if result is not None:
 								new_earning = employee.append("custom_deductions", {})
 								new_earning.salary_component = component_name
-								new_earning.amount = result
-								new_earning.annual_amount = result*12
-								employee.save()
-						else:
-								new_earning = employee.append("custom_benefits", {})
-								new_earning.salary_component = component_name
 								new_earning.amount = 0
 								# new_earning.annual_amount = result*12
 								employee.save()
-				
 
-		
+
+
+					elif (deduction_com_type == "Canteen Deduction" and canteen_type == "Total Canteen Deduction"):
+						new_earning = employee.append("custom_deductions", {})
+						new_earning.salary_component = component_name
+						new_earning.amount = 0
+						# new_earning.annual_amount = 0
+						employee.save()
+						
+
+							
+
+						
+						
+
+
+
+
+
+
 
 
 
