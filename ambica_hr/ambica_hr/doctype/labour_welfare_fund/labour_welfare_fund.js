@@ -19,11 +19,14 @@ frappe.ui.form.on('Labour Welfare Fund', {
 						row.department = data.department;
                         row.designation = data.designation;
 						row.category = data.employment_type;
+                        row.component = frm.doc.component
+                        row.employee_contribution = frm.doc.employee_contribution
+                        row.employer_contribution = frm.doc.employer_contribution
                     });
                     frm.refresh_field('lwf_deduction');
                 }
 
             }
         });
-    }
+    },
 });
