@@ -196,5 +196,17 @@
   "name": "Filter account head in branch",
   "script": "frappe.ui.form.on('Branch', {\n    refresh: function(frm) {\n        frm.fields_dict['custom_accounts'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {\n            var parentCompany = frm.doc.custom_company;\n\n            if (parentCompany === \"Shri Ambica Polymer Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAPPL'\n                    }\n                };\n            } else if (parentCompany === \"Shri Ambica Masterbatch Pvt Ltd\") {\n                return {\n                    filters: {\n                        \"parent_account\": 'Accounts Payable - SAMPL'\n                    }\n                };\n            } else {\n                return {};\n            }\n        };\n    }\n});\n\n",
   "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee",
+  "enabled": 1,
+  "modified": "2024-01-03 22:53:02.093346",
+  "module": "Ambica HR",
+  "name": "Set Relieving Date based on the resignation date and notice period",
+  "script": "frappe.ui.form.on('Employee', {\n\tafter_save(frm) {\n\t\tvar notice_days = frm.doc.notice_number_of_days;\n\t\tvar resi_date = frm.doc.resignation_letter_date;\n\t\t\n\t\tif(resi_date && notice_days){\n\t\t    var dateAfter30Days = frappe.datetime.add_days(resi_date, notice_days);\n\t\t    \n\t\t    frm.set_value('relieving_date',dateAfter30Days);\n\t\t    frm.refresh_field('relieving_date')\n\t\t    \n\t\t    console.log(dateAfter30Days);\n\t\t}\n\t\tfrm.save();\n\t}\n})",
+  "view": "Form"
  }
 ]

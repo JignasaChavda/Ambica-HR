@@ -325,7 +325,9 @@ fixtures = [
     {"dt":"Custom DocPerm","filters":[
         [
             "role","in",[
-               "Ambica HR-User"
+               "Ambica HR-User",
+               "HR Manager",
+               "HR User"
             ],
         ]
     ]},
