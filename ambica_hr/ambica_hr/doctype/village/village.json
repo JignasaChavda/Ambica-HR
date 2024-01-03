@@ -34,13 +34,15 @@
    "fetch_from": "post_office.post_office",
    "fieldname": "postal_code",
    "fieldtype": "Data",
-   "label": "Postal Code"
+   "label": "Postal Code",
+   "read_only": 1
   },
   {
    "fetch_from": "post_office.taluka",
    "fieldname": "taluka",
    "fieldtype": "Data",
-   "label": "Taluka"
+   "label": "Taluka",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_we5b",
@@ -50,19 +52,22 @@
    "fetch_from": "post_office.district",
    "fieldname": "district",
    "fieldtype": "Data",
-   "label": "District"
+   "label": "District",
+   "read_only": 1
   },
   {
    "fetch_from": "post_office.state",
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "read_only": 1
   },
   {
    "fetch_from": "post_office.country",
    "fieldname": "country",
    "fieldtype": "Data",
-   "label": "Country"
+   "label": "Country",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -78,7 +83,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-19 19:13:27.730063",
+ "modified": "2024-01-02 21:36:54.658292",
  "modified_by": "Administrator",
  "module": "Ambica HR",
  "name": "Village",

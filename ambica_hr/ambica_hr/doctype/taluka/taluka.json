@@ -35,13 +35,15 @@
    "fetch_from": "district.state",
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "read_only": 1
   },
   {
    "fetch_from": "district.country",
    "fieldname": "country",
    "fieldtype": "Data",
-   "label": "Country"
+   "label": "Country",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -57,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-19 19:13:30.645166",
+ "modified": "2024-01-02 21:34:13.858247",
  "modified_by": "Administrator",
  "module": "Ambica HR",
  "name": "Taluka",

@@ -30,7 +30,8 @@
    "fetch_from": "postal_code.taluka",
    "fieldname": "taluka",
    "fieldtype": "Data",
-   "label": "Taluka"
+   "label": "Taluka",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_dwkb",
@@ -40,19 +41,22 @@
    "fetch_from": "postal_code.district",
    "fieldname": "district",
    "fieldtype": "Data",
-   "label": "District"
+   "label": "District",
+   "read_only": 1
   },
   {
    "fetch_from": "postal_code.state",
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "read_only": 1
   },
   {
    "fetch_from": "postal_code.country",
    "fieldname": "country",
    "fieldtype": "Data",
-   "label": "Country"
+   "label": "Country",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -68,7 +72,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-19 19:13:30.461654",
+ "modified": "2024-01-02 21:35:56.169843",
  "modified_by": "Administrator",
  "module": "Ambica HR",
  "name": "Post Office",

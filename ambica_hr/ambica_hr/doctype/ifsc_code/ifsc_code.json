@@ -29,7 +29,8 @@
    "fetch_from": "branch_name.bank_name",
    "fieldname": "bank_name",
    "fieldtype": "Data",
-   "label": "Bank Name"
+   "label": "Bank Name",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -45,7 +46,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-19 19:13:28.030468",
+ "modified": "2024-01-02 21:32:19.475487",
  "modified_by": "Administrator",
  "module": "Ambica HR",
  "name": "IFSC Code",
