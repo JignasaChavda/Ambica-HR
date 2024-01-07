@@ -6,7 +6,9 @@ frappe.ui.form.on('Labour Welfare Fund', {
         frm.call({
             method: 'ambica_hr.ambica_hr.doctype.labour_welfare_fund.labour_welfare_fund.get_employee_data',
             args: {
-                category: frm.doc.category
+                posting_date: frm.doc.posting_date || null,
+                category: frm.doc.category || null,
+                department: frm.doc.department || null,
             },
             callback: function(response) {
                 if (response.message) {

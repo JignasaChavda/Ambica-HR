@@ -11,6 +11,7 @@ from frappe import db
 
 
 
+
 class LabourWelfareFund(Document):
 	def on_submit(self):
                 
@@ -50,21 +51,41 @@ class LabourWelfareFund(Document):
                     slip.save() 
 
 @frappe.whitelist(allow_guest=True)
-def get_employee_data(category):
-        try:
-            message_object = json.loads(category)
-            employment_types = [item["employment_type"] for item in message_object]
+def get_employee_data(category, department, posting_date):
+    try:
+        if posting_date:
+            if category or department:
+                message_object = json.loads(category)
+                employment_types = [item["employment_type"] for item in message_object]
 
-            employee_data = frappe.get_all(
-                "Employee",
-                filters={'employment_type': ['in', employment_types]},
-                fields=['employee','employee_name','department','designation','employment_type']
-            )
+                filters = {}
 
-            # frappe.msgprint("message:", employee_data)
-            # frappe.msgprint("Employee Data: {}".format(employee_data))
+                if department:
+                    filters['department'] = department
+
+                if employment_types:
+                    filters['employment_type'] = ['in', employment_types]
+
+                if department and employment_types:
+                    filters['department'] = department
+                    filters['employment_type'] = ['in', employment_types]
+                
+                employee_data = frappe.get_all(
+                    "Employee",
+                    filters=filters,
+                    fields=['employee', 'employee_name', 'department', 'designation', 'employment_type']
+                )
+                    
+                if not employee_data:
+                    frappe.throw("No employee data found for the specified filters")
+                return employee_data
+
+                
             
-            return employee_data  
-        except Exception as e:
-            frappe.log_error(frappe.get_traceback(), "Failed to fetch employee data")
-            return None
+            else:
+                frappe.throw("Select Category or Department filter")
+        else:
+            frappe.throw("Select Posting Date")
+
+    except Exception as e:
+        frappe.log_error("Select Category or Department filter")

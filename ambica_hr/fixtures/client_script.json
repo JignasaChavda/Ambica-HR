@@ -26,10 +26,10 @@
   "doctype": "Client Script",
   "dt": "Labour Welfare Fund",
   "enabled": 1,
-  "modified": "2023-12-19 19:11:12.184619",
+  "modified": "2024-01-07 21:50:00.371305",
   "module": "Ambica HR",
   "name": "Fetch LWF Component",
-  "script": "frappe.ui.form.on('Labour Welfare Fund', {\n\trefresh(frm) {\n\t\n\t\tfrappe.db.get_list('Salary Component', {\n            fields: ['name'], \n            filters: { \n                'component_type':'LWF'\n            }\n        }).then(function(records) {\n            var ans = records[0].name;\n            console.log(ans);\n            frm.set_value('component',ans);\n            \n           frappe.db.get_value(\"Salary Component\", ans,['employee_contribution','employer_contribution']).then(function(r){\n                var rate = r.message;\n                var emp_contri = rate.employee_contribution;\n                var empr_contri = rate.employer_contribution;\n                console.log(emp_contri,empr_contri);\n                \n                frm.set_value('employer_contribution',empr_contri);\n                frm.set_value('employee_contribution',emp_contri);\n           })\n           \n            \n            \n        });\n\n\t}\n});\n",
+  "script": "frappe.ui.form.on('Labour Welfare Fund', {\n\trefresh(frm) {\n\t\n\t\tfrappe.db.get_list('Salary Component', {\n            fields: ['name'], \n            filters: { \n                'component_type':'LWF',\n                'status': 'Approved'\n            }\n        }).then(function(records) {\n            var ans = records[0].name;\n            console.log(ans);\n            frm.set_value('component',ans);\n            \n           frappe.db.get_value(\"Salary Component\", ans,['employee_contribution','employer_contribution']).then(function(r){\n                var rate = r.message;\n                var emp_contri = rate.employee_contribution;\n                var empr_contri = rate.employer_contribution;\n                console.log(emp_contri,empr_contri);\n                \n                frm.set_value('employer_contribution',empr_contri);\n                frm.set_value('employee_contribution',emp_contri);\n           })\n           \n            \n            \n        });\n\n\t}\n});\n",
   "view": "Form"
  },
  {
