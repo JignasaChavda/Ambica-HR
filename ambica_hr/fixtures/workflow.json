@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Employee",
   "is_active": 0,
-  "modified": "2023-12-27 12:41:07.494641",
+  "modified": "2024-01-08 15:56:13.834156",
   "name": "Employee Approval Flow",
   "override_status": 1,
   "send_email_alert": 0,
