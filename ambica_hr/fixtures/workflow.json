@@ -3,8 +3,8 @@
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Employee",
-  "is_active": 0,
-  "modified": "2024-01-08 15:56:13.834156",
+  "is_active": 1,
+  "modified": "2024-01-11 17:33:21.950723",
   "name": "Employee Approval Flow",
   "override_status": 1,
   "send_email_alert": 0,
@@ -66,18 +66,6 @@
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Pending",
-    "workflow_builder_id": null
-   },
-   {
-    "action": "Review",
-    "allow_self_approval": 1,
-    "allowed": "HR Manager",
-    "condition": null,
-    "next_state": "Review",
-    "parent": "Employee Approval Flow",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approved",
     "workflow_builder_id": null
    }
   ],

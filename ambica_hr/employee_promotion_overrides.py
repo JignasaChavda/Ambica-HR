@@ -70,7 +70,6 @@ class EmployeePromotion(Document):
 	# 			frappe.DocstatusTransitionError,
 	# 		)
 
-
 	def on_submit(self):
 		
 		if self.value == "Employee":
@@ -112,6 +111,7 @@ class EmployeePromotion(Document):
 				employee.save()
 		elif self.value == "Salary Component":
 			frappe.msgprint("salary")
+		frappe.db.set_value("Employee", self.employee, 'custom_approval_status', 'Approved')
 
 
 	def on_cancel(self):
