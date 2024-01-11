@@ -36,5 +36,24 @@
   "reference_doctype": "Salary Slip",
   "script": "# 1. Set Types in Salary Slip\nsal_nm = doc.name\nsal_st_nm = doc.salary_structure\nstart_date = doc.start_date\nend_date = doc.end_date\nemp = doc.employee\n\nsal_doc = frappe.get_doc(\"Salary Slip\",sal_nm)\nsal_earning = sal_doc.get(\"earnings\")\nsal_deduction = sal_doc.get(\"deductions\")\n\n\nstu_doc = frappe.get_doc(\"Salary Structure\",sal_st_nm)\nst_earning = stu_doc.get(\"earnings\")\nst_deduction = stu_doc.get(\"deductions\")\n\n\n# Set type in Earning Table\nfor st_ear in st_earning:\n    st_com = st_ear.salary_component\n    st_type = st_ear.custom_type\n    st_ear_type = st_ear.custom_earning_component_type\n    st_incentive_type = st_ear.custom_incentive_type\n    st_diff_type = st_ear.custom_difference_type\n    \n    for sal_ear in sal_earning:\n        ans_nm = sal_ear.name\n        ans_com = sal_ear.salary_component\n        \n        if st_com==ans_com:\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_type', st_type)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_earning_component_type', st_ear_type)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_incentive_type', st_incentive_type)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_difference_type', st_diff_type)\n\n\n# Set type in Deduction Table\nfor st_ded in st_deduction:\n    st_com = st_ded.salary_component\n    st_type = st_ded.custom_type\n    st_ded_type = st_ded.custom_deduction_component_type\n    st_pf_ded = st_ded.custom_pf_account_contribution\n    st_can_ded = st_ded.custom_canteen_type\n    st_section_code = st_ded.custom_section_code\n    \n    for sal_ded in sal_deduction:\n        ans_nm = sal_ded.name\n        ans_com = sal_ded.salary_component\n        \n        if st_com==ans_com:\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_type', st_type)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_deduction_component_type', st_ded_type)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_pf_account_contribution', st_pf_ded)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_canteen_type', st_can_ded)\n            frappe.db.set_value('Salary Detail', ans_nm, 'custom_canteen_type', st_section_code)\n\n\n\n",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Save",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2024-01-11 19:04:38.084964",
+  "module": "Ambica HR",
+  "name": "Update Status on Employee Master",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Employee Promotion",
+  "script": "frappe.db.set_value(\"Employee\", doc.employee, 'custom_approval_status', 'Review')",
+  "script_type": "DocType Event"
  }
 ]
