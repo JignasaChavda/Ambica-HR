@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+       .tabborder {
+           border: 1px solid black;
+       }
+       .center {
+           text-align: center;
+       }
+       .cellpadding {
+           padding-top: 2px;
+           padding-bottom: 2px;
+       }
+   </style>
+</head>
+<body>
+   <table width="80%" style="font-size: 14px; color: black; margin: 0 auto; border-collapse: collapse" class="tabborder">
+       <thead>
+           <tr><th colspan="2" class="center" style="font-size: 22px;">Form - A :1 (See Rule No. 3 B)</th></tr>
+           <tr><th colspan="2" class="center" style="font-size: 17px;">Labour Welfare Fund Register As On</th></tr>
+           <tr><th colspan="2" class="center">{{ date }}</th></tr>
+       </thead>
+       <tbody>
+           <tr><td colspan="2" style="padding-top: 30px; padding-left: 18px; padding-bottom: 10px;">Account No.:-</td></tr>
+           <tr class="tabborder">
+               <td width="45%" style="padding-left: 10px;" class="cellpadding">1. Name Of The Factory/Establishment</td>
+               <td width="55%" class="cellpadding">: <b>{{ company_name }}</b></td>
+           </tr>
+           <tr class="tabborder">
+               <td style="padding-left: 10px;" class="cellpadding">2. Name Of Owner</td>
+               <td class="cellpadding">: {{ company_name }}</td>
+           </tr>
+           <tr class="tabborder">
+               <td style="padding-left: 10px;" class="cellpadding">3. Nature Of Factory/Establishment</td>
+               <td class="cellpadding">: </td>
+           </tr>
+           <tr>
+               <td style="padding-left: 10px; vertical-align: top;" class="cellpadding">4. Address Of Factory/Establishment</td>
+               <td style="padding: 0px;">
+                   <table width="100%" style="font-size: 14px; color: black;">
+                   {% for add in address %}
+                   <tr><td rowspan="2" style="padding: 0px; vertical-align: top;">: </td></tr>
+                       <td style="padding-left: 4px;">{{add.address_line1}}, {{add.address_line2}}, {{add.city}}, {{add.state}}, {{add.pincode}}</td></tr>
+                   <tr><td colspan="2" style="padding:10px 0px 0px 10px;">Phone :-{{add.phone}}</td></tr>
+                   {% endfor %}
+                   </table>
+               </td>
+           </tr>
+           <tr>
+               <td style="padding-left: 10px;" class="cellpadding">5. Total No. Of Workers On Firm</td>
+               <td class="cellpadding"  style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;">{{ employees }}</div></td>
+           </tr>
+           <tr class="tabborder">
+               <td style="padding-left: 29px;" class="cellpadding">Register As On</td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;"><b>{{ date }}</b></div></td>
+           </tr>
+           <tr>
+               <td style="padding-left: 10px;" class="cellpadding">6. (a) Workers Share As Per Column # 5</td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;">{{ employeeshare }}</div></td>
+           </tr>
+           <tr><td style="padding-left: 105px;" class="cellpadding">6.00 Rs Per Worker</td></tr>
+           <tr>
+               <td style="padding-left: 30px;" class="cellpadding">(b) Owners Share As Per Column # 5</td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;">{{ employershare }}</div></td>
+           </tr>
+           <tr><td colspan="2" style="padding-left: 90px; border-bottom-style: solid; border-width: 1px; border-color: black;" class="cellpadding">12.00 Rupee Per Worker</td></tr>
+           <tr><td colspan="2" style="padding-left: 10px;" class="cellpadding">7. (1) Details Of Fund Paid To WelFare Commissinor</td></tr>
+           <tr>
+               <td style="padding-left: 27px;" class="cellpadding">(a) No.Of Employees</td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;">{{ employees }}</div></td>
+           </tr>
+           <tr>
+               <td style="padding-left: 52px;" class="cellpadding">Employee`s Share</td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;">{{ employeeshare }}</div></td>
+           </tr>
+           <tr>
+               <td style="padding-left: 27px;" class="cellpadding">(b) Employer`s Share</td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;">{{ employershare }}</div></td>
+           </tr>
+           <tr>
+               <td style="padding-left: 75px;" class="cellpadding"><b>Total</b></td>
+               <td class="cellpadding" style="display: flex; justify-content: space-between;"><div>: </div><div style="padding-right: 70%;"><b>{{ total }}</b></div></td>
+           </tr>
+           <tr>
+               <td style="padding-left: 27px;" class="cellpadding">(c) Date Of Payment</td>
+               <td class="cellpadding">:</td>
+           </tr>
+           <tr>
+               <td style="padding-left: 27px;" class="cellpadding">(d) Mode Of Payment</td>
+               <td class="cellpadding">:</td>
+           </tr>
+           <tr class="tabborder">
+               <td style="padding-left: 10px;" class="cellpadding">8. Reasons For Less Payment Or Unpaid </td>
+               <td class="cellpadding">:</td>
+           </tr>
+           <tr>
+               <td style="padding-left: 29px;" class="cellpadding">Date</td>
+               <td class="cellpadding">:</td>
+           </tr>
+           <tr><td colspan="2" style="text-align: right; padding-right: 25px; padding-top: 5px;"><b>{{ company_name }}</b></td></tr>
+           <tr><td colspan="2" style="text-align: right; padding-right: 50px; padding-bottom: 25px; padding-top: 40px;">AUTHORIZED SIGNATORY</td></tr>
+       </tbody>
+   </table>
+</body>
+</html>

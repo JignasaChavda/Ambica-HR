@@ -84,8 +84,15 @@ class EmployeePromotion(Document):
 					New_value = data.new
 					Fieldname = data.fieldname
 
-					setattr(employee, Fieldname, New_value)
-					employee.save()
+					if Property=='Holiday List':
+						setattr(employee, Fieldname, New_value)
+						week_off = frappe.db.get_value("Holiday List", New_value, 'weekly_off')
+						setattr(employee, 'custom_week_off', week_off)
+						employee.save()
+						
+					else:	
+						setattr(employee, Fieldname, New_value)
+						employee.save()
 
 					for record in employee.custom_employee_internal_work_history:
 						if record.property == Property:

@@ -1,126 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .tabborder {
-            border: 1px solid black;
-        }
-        .top {
-            vertical-align: top;
-        }
-        .center {
-            text-align: center;
-        }
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+       .tabborder {
+           border: 1px solid black;
+       }
+       .top {
+           vertical-align: top;
+       }
+       .center {
+           text-align: center;
+       }
+       /* .table-responsive {
+           overflow-x: auto;
+           display: block;
+       } */
+   </style>
 </head>
 <body>
-    <table width="100%" style="font-size: 12px; color: black;">
-        <thead>
-            <tr>
-                <th width="2%" class="tabborder top">Sr. No.</th>
-                <th width="4%" class="tabborder top">Empl Code</th>
-                <th width="21%" class="tabborder top">
-                    <table>
-                        <tr><th>Employee Name</th></tr>
-                        <tr><th>Designation</th></tr>
-                        <tr><th>Department</th></tr>
-                    </table>
-                </th>
-                <th width="7%" class="tabborder top center">Join Dt / Probation Dt</th>
-                <th width="10%" class="tabborder top center">Shift</th>
-                {% counter = 1 %}
-                {% for attendance_detail in attendance_details %}
-                {% for detail in attendance_detail.attendance_details %}
-                {% if counter == 1 %}
-                <th width="2%" class="tabborder top center">{{ (detail._index + 1) }}</th>
-                {% endif %}
-                {% endfor %}
-                {% counter = counter + 1 %}
-                {% endfor %}
-                <th width="5%" class="tabborder top center">Total Pres.</th>
-                <th width="4%" class="tabborder top center">
-                    <table width="100%">
-                        <tr><th>Woff</th></tr>
-                        <tr><th>PH</th></tr>
-                    </table>
-                </th>
-                <th width="3%" class="tabborder top center">
-                    <table width="100%">
-                        <tr><th>PL</th></tr>
-                        <tr><th>CL</th></tr>
-                        <tr><th>SL</th></tr>
-                    </table>
-                </th>
-                <th width="4%" class="tabborder top center">Total Days</th>
-            </tr>
+   <table style="font-size: 8px; color: black; border-collapse: collapse;" class="table-responsive">
+       <thead>
+           <tr>
+               <th width="1%" class="tabborder top" style="padding-left: 2px;">Sr. No.</th>
+               <th width="3%" class="tabborder top" style="padding-left: 2px;">Empl Code</th>
+               <th width="10%" class="tabborder top">
+                   <table width="100%" style="font-size: 8px; color: black; text-align: left;">
+                       <tr><th class="top" style="padding: 0px 0px 0px 2px;">Employee Name</th></tr>
+                       <tr><th class="top" style="padding: 0px 0px 0px 2px;">Designation</th></tr>
+                       <tr><th class="top" style="padding: 0px 0px 0px 2px;">Department</th></tr>
+                   </table>
+               </th>
+               <th width="5%" class="tabborder top center">Join Dt / Probation Dt</th>
+               <th width="6%" class="tabborder top center">Shift</th>
+               {% counter = 1 %}
+               {% for attendance_detail in attendance_details %}
+               {% for day_detail in attendance_detail.days %}
+               {% if counter == 1 %}
+               <th width="2%" class="tabborder top center">{{ day_detail._index+1 }}</th>
+               {% endif %}
+               {% endfor %}
+               {% counter = counter + 1 %}
+               {% endfor %}
+               <th width="3%" class="tabborder top center">Total Pres.</th>
+               <th width="2%" class="tabborder top center">
+                   <table width="100%" style="font-size: 8px; color: black; text-align: center;">
+                       <tr><th class="top" style="padding: 0px;">Woff</th></tr>
+                       <tr><th class="top" style="padding: 0px;">PH</th></tr>
+                   </table>
+               </th>
+               <th width="2%" class="tabborder top center">
+                   <table width="100%" style="font-size: 8px; color: black; text-align: center;">
+                       <tr><th class="top" style="padding: 0px;">PL</th></tr>
+                       <tr><th class="top" style="padding: 0px;">CL</th></tr>
+                       <tr><th class="top" style="padding: 0px;">SL</th></tr>
+                   </table>
+               </th>
+               <th width="3%" class="tabborder top center">Total Days</th>
+           </tr>
 
-        </thead>
-        <tbody>
-            <tr>
-                {% for attendance_detail in attendance_details %}
-                <td class="tabborder top">{{ (attendance_detail._index)+1 }}</td>
-                <td class="tabborder top">{{ attendance_detail.Employee }}</td>
-                <td class="tabborder top">
-                    <table>
-                        <tr><td>{{ attendance_detail.Employee_Name }}</td></tr>
-                        <tr><td>{{ attendance_detail.Designation }}</td></tr>
-                        <tr><td>{{ attendance_detail.Department }}</td></tr>
-                    </table>
-                </td>
-                <td class="tabborder top" style="padding-top: 15px;">{{ attendance_detail.Custom_Probation_Date }}</td>
-                <td class="tabborder top">{{ attendance_detail.Shift }}</td>
-                {% total_pres = 0 %}
-                {% total_woff = 0 %}
-                {% total_ph = 0 %}
-                {% total_pl = 0 %}
-                {% total_cl = 0 %}
-                {% total_sl = 0 %}
-                {% for detail in attendance_detail.attendance_details %}
-                {% if detail.Status == "Present" || detail.Status == "Half Day" %}
-                <td class="tabborder top center">{{ detail.Custom_Derived_Present_Minutes }}</td>
-                {% total_pres = total_pres + detail.Custom_Derived_Present_Minutes %}
-                {% endif %}
-                {% if detail.Status == "Week Off" %}
-                <td class="tabborder top center">WO</td>
-                {% total_woff = total_woff + 1 %}
-                {% endif %}
-                {% if detail.Status == "Public Holiday" %}
-                <td class="tabborder top center">PH</td>
-                {% total_ph = total_ph + 1 %}
-                {% endif %}
-                {% if detail.Status == "Absent" %}
-                <td class="tabborder top center">A</td>
-                {% endif %}
-                {% if detail.Status == "On Leave" %}
-                <td class="tabborder top center">
-                    {% if detail.Leave_Type == "Casual Leave" %}CL{% total_cl = total_cl + 1 %}{% endif %}
-                    {% if detail.Leave_Type == "Sick Leave" %}SL{% total_sl = total_sl + 1 %}{% endif %}
-                    {% if detail.Leave_Type == "Privilege Leave" %}PL{% total_pl = total_pl + 1 %}{% endif %}
-                </td>
-                {% endif %}
-                {% endfor %}
-                <td class="tabborder top center">{{ total_pres }}</td> 
-                <td class="tabborder top center">
-                    <table width="100%">
-                        <tr><td>{{ total_woff }}</td></tr>
-                        <tr><td>{{ total_ph }}</td></tr>
-                    </table>
-                </td>
-                <td class="tabborder top center">
-                    <table width="100%">
-                        <tr><td>{{ total_pl }}</td></tr>
-                        <tr><td>{{ total_cl }}</td></tr>
-                        <tr><td>{{ total_sl }}</td></tr>
-                    </table>
-                </td>
-                <td class="tabborder top center">{{ total_pres + total_woff + total_ph + total_pl + total_cl + total_sl }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>  
+
+       </thead>
+       <tbody>
+           <tr>
+               {% for attendance_detail in attendance_details %}
+               <td class="tabborder top" style="padding-left: 2px;">{{ (attendance_detail._index)+1 }}</td>
+               <td class="tabborder top" style="padding-left: 2px;">{{ attendance_detail.Employee }}</td>
+               <td class="tabborder top" style="text-align: left;">
+                   <table  width="100%" style="font-size: 8px; color: black; text-align: left;">
+                       <tr><td class="top" style="padding: 0px 0px 0px 2px; margin: 0px;">{{ attendance_detail.Employee_Name }}</td></tr>
+                       <tr><td class="top" style="padding: 0px 0px 0px 2px; margin: 0px;">{{ attendance_detail.Designation }}</td></tr>
+                       <tr><td class="top" style="padding: 0px 0px 0px 2px; margin: 0px;">{{ attendance_detail.Department }}</td></tr>
+                   </table>
+               </td>
+               <td class="tabborder top" style="vertical-align: middle;">{{ attendance_detail.Custom_Probation_Date }}</td>
+               <td class="tabborder top">{{ attendance_detail.Shift }}</td>
+               {% for detail in attendance_detail.days %}
+                   {% if detail.details.Status == "Present" || detail.details.Status == "Half Day" %}
+                   <td class="tabborder top center">{{ detail.details.Custom_Derived_Present_Minutes }}</td>
+                   {% endif %}
+                   {% if detail.details.Status == "Week Off" %}
+                   <td class="tabborder top center">WO</td>
+                   {% endif %}
+                   {% if detail.details.Status == "Public Holiday" %}
+                   <td class="tabborder top center">PH</td>
+                   {% endif %}
+                   {% if detail.details.Status == "Absent" %}
+                   <td class="tabborder top center">A</td>
+                   {% endif %}
+                   {% if detail.details.Status == "On Leave" %}
+                   <td class="tabborder top center">
+                       {% if detail.details.Leave_Type == "Casual Leave" %}CL{% endif %}
+                       {% if detail.details.Leave_Type == "Sick Leave" %}SL{% endif %}
+                       {% if detail.details.Leave_Type == "Privilege Leave" %}PL{% endif %}
+                   </td>
+                   {% endif %}
+                   {% if detail.details.Status == null %}
+                   <td class="tabborder top center">0</td>
+                   {% endif %}
+               {% endfor %}
+               <td class="tabborder top center">{{ attendance_detail.total_minutes }}</td>
+               <td class="tabborder top center">
+                   <table width="100%" style="font-size: 8px; color: black; text-align: center;">
+                       <tr><td class="top" style="padding: 0px;">{{ attendance_detail.total_week_off }}</td></tr>
+                       <tr><td class="top" style="padding: 0px;">{{ attendance_detail.total_public_holiday }}</td></tr>
+                   </table>
+               </td>
+               <td class="tabborder top center">
+                   <table width="100%" style="font-size: 8px; color: black; text-align: center;">
+                       <tr><td class="top" style="padding: 0px;">{{ attendance_detail.total_privilege_leave }}</td></tr>
+                       <tr><td class="top" style="padding: 0px;">{{ attendance_detail.total_casual_leave }}</td></tr>
+                       <tr><td class="top" style="padding: 0px;">{{ attendance_detail.total_sick_leave }}</td></tr>
+                   </table>
+               </td>
+               <td class="tabborder top center">{{ attendance_detail.total_days }}</td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table> 
 </body>
-</html> 
-
-
+</html>

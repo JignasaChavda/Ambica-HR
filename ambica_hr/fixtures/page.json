@@ -1,5 +1,6 @@
 [
  {
+  "_liked_by": "[\"Administrator\"]",
   "content": null,
   "docstatus": 0,
   "doctype": "Page",
@@ -17,6 +18,7 @@
   "title": "Attendance Detail"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "content": null,
   "docstatus": 0,
   "doctype": "Page",
@@ -32,5 +34,23 @@
   "style": null,
   "system_page": 0,
   "title": "Employee Details"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "content": null,
+  "docstatus": 0,
+  "doctype": "Page",
+  "icon": null,
+  "modified": "2024-01-19 16:26:29.170081",
+  "module": "Ambica HR",
+  "name": "lwf_details",
+  "page_name": "lwf_details",
+  "restrict_to_domain": null,
+  "roles": [],
+  "script": null,
+  "standard": "Yes",
+  "style": null,
+  "system_page": 0,
+  "title": "Labour Welfare Fund"
  }
 ]

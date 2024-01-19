@@ -1,196 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .tabborder {
-          border: 1px solid black;
-        }
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+       .tabborder {
+         border: 1px solid black;
+       }
+       .top {
+           vertical-align: text-top;
+       }
+       .center {
+           text-align: center;
+       }
+       .right {
+           text-align: right;
+       }
+       .m0 {
+           margin: 0px 0px;
+       }
+       /* .table-container { */
+           /* margin-bottom: 100px; */
+           /* page-break-after: auto; */
+       /* } */
+       /* thead {
+           display: table-header-group;
+       } */
+       /* table {
+           page-break-inside: avoid;
+           page-break-after: auto;
+        }   */
+       .table-header {
+           display: table-header-group;
+       }
+       /* .table-body { */
+           /* display: block; */
+       /* } */
+   </style>
 </head>
 <body>
-        <table style="font-size: 10px; color: black;">
-            <thead>
-                <tr>
-                    <th rowspan="5" class="align-top tabborder pl-1" width="1%">Sr. No.</th>
-                    <th rowspan="5" class="align-top tabborder" width="16%">
-                        <table>
-                            <tr><th class="pl-1">Employee Name</th></tr>
-                            <tr><th class="pl-1">Emp. ID</th></tr>
-                            <tr><th class="pl-1">Designation</th></tr> 
-                            <tr><th class="pl-1">Department</th></tr>
-                        </table>
-                    </th>
-                    <th rowspan="5" class="align-top text-center tabborder" width="6%">Working Details</th>
-                    <th rowspan="5" class="align-top text-center tabborder" width="8%">Rate of Wages</th>
-                    <th colspan="3" class="align-top text-center tabborder">Earnings 1</th>
-                    <th rowspan="2" class="align-top text-center tabborder" width="5%">Gross Salary</th>
-                    <th colspan="8" class="align-top text-center tabborder">Deduction</th>
-                    <th rowspan="5" class="align-top text-center tabborder" width="4%">Gross Deduction</th>
-                    <th rowspan="5" class="align-top text-center tabborder" width="5%">Net Payable</th>
-                    <th rowspan="5" class="align-top text-center tabborder" width="4%">Signature</th>
-                </tr>
-                <tr>
-                    <th width="4%" class="tabborder"> 
-                        <table>
-                            <tr><th class="align-top text-center">BASIC</th></tr>
-                            <tr><th class="align-top text-center">Gen.Inc Diff.Basic</th></tr>
-                        </table>
-                    </th>
-                    <th width="4%" class="tabborder"> 
-                        <table>
-                            <tr><th class="align-top text-center pb-2">HRA</th></tr>
-                            <tr><th class="align-top text-center pb-2">DIFF.HRA</th></tr>
-                        </table>
-                    </th>
-                    <th width="4%" class="tabborder"> 
-                        <table>
-                            <tr><th class="align-top text-center pb-2">CONV</th></tr>
-                            <tr><th class="align-top text-center pb-2">DIFF.CO</th></tr>
-                        </table>
-                    </th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%">PF</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%">PTAX</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%">LOAN</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%"> IT</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%">BUS</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%">CANTEEN</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="4%">LWF</th>
-                    <th rowspan="4" class="align-top text-center tabborder" width="5%">OTH. DED.</th>            
-                </tr>
-                <tr>
-                    <th colspan="3" class="align-top text-center tabborder">Earnings 2 </th>
-                    <th rowspan="2" class="align-top text-center tabborder">Gross Incentive</th>
-                </tr>
-                <tr class="border">
-                    <th class="align-top text-center tabborder">ATD. INC.</th>
-                    <th class="align-top text-center tabborder">PRD. INC.</th>
-                    <th class="align-top text-center tabborder">LOY. INC.</th>
-                </tr>
-            </thead>
-            <tbody>
-               {% for salary_slip in salary_slips %} 
-                <tr>
-                    <td rowspan="3" class="align-top tabborder pl-1"><b>{{ (salary_slip._index)+1 }}.</b></td>
-                    <td rowspan="3" class="align-top tabborder">
-                        <table>
-                            <tr><td class="pl-1"><b>{{ salary_slip.Employee_Name }}</b></td></tr>
-                            <tr><td class="pl-1">{{ salary_slip.Employee }}</td></tr>
-                            <tr><td class="pl-1">{{ salary_slip.Designation }}</td></tr>
-                            <tr><td class="pl-1">{{ salary_slip.Department }}</td></tr>
-                            <tr><td class="pl-1">PF. No. {{ salary_slip.PF_No }}</td></tr>
-                            <tr><td class="pl-1">ACC. No. {{ salary_slip.Bank_Account_No }}</td></tr>
-                        </table>
-                    </td>
-                    <td rowspan="2" class="align-top tabborder">
-                        <table width="100%">
-                            <tr><td class="text-right">WD: {{ salary_slip.Total_Working_Days }}</td></tr>
-                            <tr><td class="text-right">PD: {{ salary_slip.Payment_Days}}</td></tr>
-                            <tr><td class="text-right">PH: {{ salary_slip.Custom_PH}}</td></tr>
-                            <tr><td class="text-right">CL: {{ salary_slip.Custom_CL }}</td></tr>
-                            <tr><td class="text-right">PL: {{ salary_slip.Custom_PL}}</td></tr>
-                            <tr><td class="text-right">WO: {{ salary_slip.Custom_WO}}</td></tr>
-                            <tr><td class="text-right">AB: {{ salary_slip.Absent_Days}}</td></tr>
-                        </table>
-                    </td>
-                    <td rowspan="2" class="align-top tabborder">
-                        <table>
-                            <tr><td class="pl-2">BS</td></tr>
-                            <tr><td class="pl-2">HRA</td></tr>
-                            <tr><td class="pl-2">CONV</td></tr>
-                        </table>
-                    </td>
-                    <td class="align-top tabborder">
-                        <table width="100%">
-                            {% for detail in salary_slip.details %}
-                            {% if detail.Salary_Component == "Basic" %}
-                            <tr><td class="text-right pt-2 pb-2">{{ detail.Amount }}.00</td></tr>
-                            {% endif %}
-                            {% if detail.Salary_Component == "Basic Diff." %}
-                            <tr><td  class="text-right pt-2 pb-2">{{ detail.Amount }}.00</td></tr>
-                            {% endif %}
-                            {% endfor %}
-                        </table>
-                    </td>
-                    <td class="align-top tabborder">
-                        <table width="100%">
-                            {% for detail in salary_slip.details %}
-                            {% if detail.Salary_Component == "House Rent Allowance" %}
-                            <tr><td class="text-right pt-2 pb-2">{{ detail.Amount }}.00</td></tr>
-                            {% endif %}
-                            {% if detail.Salary_Component == "HRA Diff." %}
-                            <tr><td class="text-right pt-2 pb-2">{{ detail.Amount }}.00</td></tr>
-                            {% endif %}
-                            {% endfor %}
-                        </table>
-                    </td>
-                    <td class="align-top tabborder">
-                        <table width="100%">
-                            {% for detail in salary_slip.details %}
-                            {% if detail.Salary_Component == "Conveyance" %}
-                            <tr><td class="text-right pt-2 pb-2">{{ detail.Amount }}.00</td></tr>
-                            {% endif %}
-                            {% if detail.Salary_Component == "Conveyance Diff." %}
-                            <tr><td class="text-right pt-2 pb-2">{{ detail.Amount }}.00</td></tr>
-                            {% endif %}
-                            {% endfor %}
-                        </table>
-                    </td>
-                    <td class="align-top tabborder text-right pt-2">{{ salary_slip.Gross_Pay }}.00</td>
-                    {% for detail in salary_slip.details %}
-                    {% if detail.Salary_Component == "Provident Fund" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Professional Tax" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Loan" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Income Tax" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Bus Deduction" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Canteen Deduction" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "LWF" %}  
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Other Deduction" %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% endfor %}
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ salary_slip.Total_Deduction }}.00</td>
-                    <td rowspan="3" class="align-top tabborder text-right pt-2">{{ salary_slip.Net_Pay }}.00</td>
-                    <td rowspan="3" class="align-top tabborder"></td>
-                </tr>
-                <tr>
-                    {% for detail in salary_slip.details %}
-                    {% if detail.Salary_Component == "Attendance Incentive" %}
-                    <td rowspan="2" class="align-top tabborder text-right pt-3">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Production Incentive" %}
-                    <td rowspan="2" class="align-top tabborder text-right pt-3">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% if detail.Salary_Component == "Loyalty Incentive" %}
-                    <td rowspan="2" class="align-top tabborder text-right pt-3">{{ detail.Amount }}.00</td>
-                    {% endif %}
-                    {% endfor %}
-                    <td rowspan="2" class="align-top tabborder text-right pt-3">0.00</td>
-                </tr>
-                <tr>
-                    <td class="tabborder text-right"><b>TOT.  {{ (salary_slip.Payment_Days) + (salary_slip.Custom_CL) + (salary_slip.Custom_PL) }}</b></td>
-                    <td class="tabborder text-right"><b>Total</b></td>
-                </tr>
-                {% endfor %}  
-            </tbody>
-        </table>
-    
+   <div class="table-container">
+       <div style="display: flex; justify-content: space-between; margin:0px 0px 0px 0px; color: black;">
+           <div>
+               <p class="m0" style="font-size: 24px;" id="companyname"><b>{{company}}</b></p>
+               <p style="font-size: 10px; margin:5px 0px;" id="address"><b>{{address}}</b></p>
+           </div>
+           <div>
+               <p class="m0" style="font-size: 10px;" id="rule1">(1) Form under Rule - 6 of Equal Remuneration Rules 1976.</p>
+               <p class="m0" style="font-size: 10px;" id="rule2">(2) From under Rule - 21(4),25(2),26(1) and 26(2) of Gujarat Minimum Wages Rules 1961</p>
+               <p class="m0" style="font-size: 10px;" id="rule3">(3) From under Rule - 6 of Payment of Wages Gujarat Rules.1963.</p>
+               <p class="m0" style="font-size: 10px;" id="rule4">(4) From 17 under Rule - 78 of Contract Labour (Regulation && Abolition) Gujarat,Rules,1972</p>
+               <p class="m0" style="font-size: 10px;" id="rule5">(5) From under Rule - 52(2)of Inter State Migrant Workers (Gujarat) Rules 1981</p>
+           </div>
+       </div>
+       <hr style="background-color: black;">
+       <table style="font-size: 10px; color: black; border-collapse: collapse;" width="100%">
+           <thead class="table-header">
+               <!-- <tr>
+                   <td colspan="19">
+                       <div style="display: flex; justify-content: space-between; margin:0px 0px 0px 0px;">
+                           <div>
+                               <p class="m0" style="font-size: 24px;" id="companyname"><b>{{company}}</b></p>
+                               <p style="font-size: 10px; margin:5px 0px;" id="address"><b>{{address}}</b></p>
+                           </div>
+                           <div>
+                               <p class="m0" style="font-size: 10px;" id="rule1">(1) Form under Rule - 6 of Equal Remuneration Rules 1976.</p>
+                               <p class="m0" style="font-size: 10px;" id="rule2">(2) From under Rule - 21(4),25(2),26(1) and 26(2) of Gujarat Minimum Wages Rules 1961</p>
+                               <p class="m0" style="font-size: 10px;" id="rule3">(3) From under Rule - 6 of Payment of Wages Gujarat Rules.1963.</p>
+                               <p class="m0" style="font-size: 10px;" id="rule4">(4) From 17 under Rule - 78 of Contract Labour (Regulation && Abolition) Gujarat,Rules,1972</p>
+                               <p class="m0" style="font-size: 10px;" id="rule5">(5) From under Rule - 52(2)of Inter State Migrant Workers (Gujarat) Rules 1981</p>
+                           </div>
+                       </div>           
+                   </td>
+               </tr> -->
+               <tr>
+                   <td colspan="19">
+                       <div>
+                           <!-- <div style="display: flex; justify-content: space-between; margin:0px 0px 0px 0px;">
+                               <div>
+                                   <p class="m0" style="font-size: 24px;" id="companyname"><b>{{company}}</b></p>
+                                   <p style="font-size: 10px; margin:5px 0px;" id="address"><b>{{address}}</b></p>
+                               </div>
+                               <div>
+                                   <p class="m0" style="font-size: 10px;" id="rule1">(1) Form under Rule - 6 of Equal Remuneration Rules 1976.</p>
+                                   <p class="m0" style="font-size: 10px;" id="rule2">(2) From under Rule - 21(4),25(2),26(1) and 26(2) of Gujarat Minimum Wages Rules 1961</p>
+                                   <p class="m0" style="font-size: 10px;" id="rule3">(3) From under Rule - 6 of Payment of Wages Gujarat Rules.1963.</p>
+                                   <p class="m0" style="font-size: 10px;" id="rule4">(4) From 17 under Rule - 78 of Contract Labour (Regulation && Abolition) Gujarat,Rules,1972</p>
+                                   <p class="m0" style="font-size: 10px;" id="rule5">(5) From under Rule - 52(2)of Inter State Migrant Workers (Gujarat) Rules 1981</p>
+                               </div>
+                           </div>
+                           <hr style="background-color: black;"> -->
+                           <p class="m0" style="font-size: 24px; text-align: center;" id="companyname"><b>{{company}}</b></p>
+                          
+                           <div style="display: flex; justify-content: space-between;">
+                               <p class="m0" style="font-size: 10px;" id="pf"><b>PF. No. :-  {{pf_number}}</b></p>
+                               <p style="font-size: 10px; margin:0px 80px 0px 0px;" id="pf"><b>{{month}} - {{year}}</b></p>
+                           </div>
+                           <div style="display: flex; justify-content: space-between;">
+                               <p style="font-size: 10px; margin:5px 0px;"><b>ESI No. :- {{esi_number}}</b></p>
+                               <p style="font-size: 18px; margin:5px 0px;"><b>Wages Register</b></p>
+                               <p style="font-size: 10px; margin:5px 80px 5px 0px;"><b>Date of Payment :-</b></p>
+                           </div>
+                       </div>
+                   </td>
+               </tr>
+               <tr>
+                   <th rowspan="5" class="top tabborder" width="1%">Sr. No.</th>
+                   <th rowspan="5" class="top tabborder" width="16%">
+                       <table width="100%" style="font-size: 10px; color: black; text-align: left;">
+                           <tr><th>Employee Name</th></tr>
+                           <tr><th>Emp. ID</th></tr>
+                           <tr><th>Designation</th></tr>
+                           <tr><th>Department</th></tr>
+                       </table>
+                   </th>
+                   <th rowspan="5" class="top center tabborder" width="6%">Working Details</th>
+                   <th rowspan="5" class="top center tabborder" width="8%">Rate of Wages</th>
+                   <th colspan="3" class="top center tabborder">Earnings 1</th>
+                   <th rowspan="2" class="top center tabborder" width="5%">Gross Salary</th>
+                   <th colspan="8" class="top center tabborder">Deduction</th>
+                   <th rowspan="5" class="top center tabborder" width="4%">Gross Deduction</th>
+                   <th rowspan="5" class="top center tabborder" width="5%">Net Payable</th>
+                   <th rowspan="5" class="top center tabborder" width="4%">Signature</th>
+               </tr>
+               <tr>
+                   <th width="4%" class="tabborder">
+                       <table width="100%"  style="font-size: 10px; color: black;">
+                           <tr><th class="top center">BASIC</th></tr>
+                           <tr><th class="top center">Gen.Inc Diff.Basic</th></tr>
+                       </table>
+                   </th>
+                   <th width="4%" class="tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           <tr><th class="top center" style="padding-bottom: 7px;">HRA</th></tr>
+                           <tr><th class="top center" style="padding-bottom: 6px;">DIFF.HRA</th></tr>
+                       </table>
+                   </th>
+                   <th width="4%" class="tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           <tr><th class="top center" style="padding-bottom: 7px;">CONV</th></tr>
+                           <tr><th class="top center" style="padding-bottom: 6px;">DIFF.CO</th></tr>
+                       </table>
+                   </th>
+                   <th rowspan="4" class="top center tabborder" width="5%">PF</th>
+                   <th rowspan="4" class="top center tabborder" width="5%">PTAX</th>
+                   <th rowspan="4" class="top center tabborder" width="5%">LOAN</th>
+                   <th rowspan="4" class="top center tabborder" width="5%"> IT</th>
+                   <th rowspan="4" class="top center tabborder" width="5%">BUS</th>
+                   <th rowspan="4" class="top center tabborder" width="5%">CANTEEN</th>
+                   <th rowspan="4" class="top center tabborder" width="4%">LWF</th>
+                   <th rowspan="4" class="top center tabborder" width="5%">OTH. DED.</th>           
+               </tr>
+               <tr>
+                   <th colspan="3" class="top center tabborder">Earnings 2 </th>
+                   <th rowspan="2" class="top center tabborder">Gross Incentive</th>
+               </tr>
+               <tr class="border">
+                   <th class="top center tabborder">ATD. INC.</th>
+                   <th class="top center tabborder">PRD. INC.</th>
+                   <th class="top center tabborder">LOY. INC.</th>
+               </tr>
+           </thead>
+           <tbody class="table-body">
+              {% for salary_slip in salary_slips %}
+               <tr>
+                   <td rowspan="3" class="top tabborder" style="padding-top: 0px;"><b>{{ (salary_slip._index)+1 }}.</b></td>
+                   <td rowspan="3" class="top tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           <tr><td><b>{{ salary_slip.Employee_Name }}</b></td></tr>
+                           <tr><td>{{ salary_slip.Employee }}</td></tr>
+                           <tr><td>{{ salary_slip.Designation }}</td></tr>
+                           <tr><td>{{ salary_slip.Department }}</td></tr>
+                           <tr><td>PF. No. {{ salary_slip.pf_account_number }}</td></tr>
+                           <tr><td>ACC. No. {{ salary_slip.Bank_Account_No }}</td></tr>
+                       </table>
+                   </td>
+                   <td rowspan="2" class="tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           <tr>
+                               <td class="right">WD: </td>
+                               <td class="right">{{ salary_slip.Total_Working_Days }}</td>
+                           </tr>
+                           <tr>
+                               <td class="right">PD: </td>
+                               <td class="right">{{ salary_slip.Payment_Days}}</td>
+                           </tr>
+                           <tr>
+                               <td class="right">PH: </td>
+                               <td class="right">{{ salary_slip.Custom_PH}}</td>
+                           </tr>
+                           <tr>
+                               <td class="right">CL: </td>
+                               <td class="right">{{ salary_slip.CL }}</td>
+                           </tr>
+                           <tr>
+                               <td class="right">PL: </td>
+                               <td class="right">{{ salary_slip.PL }}</td>
+                           </tr>
+                           <tr>
+                               <td class="right">WO: </td>
+                               <td class="right">{{ salary_slip.Custom_WO}}</td>
+                           </tr>
+                           <tr>
+                               <td class="right">AB: </td>
+                               <td class="right">{{ salary_slip.Absent_Days}}</td>
+                           </tr>
+                       </table>
+                   </td>
+                   <td rowspan="2" class="top tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           <tr><td style="padding-left: 8px;">BS</td>
+                               {% full_basic_found = false %}
+                               {% full_hra_found = false %}
+                               {% full_conveyance_found = false %}
+                               {% for earning in salary_slip.earning_data %}
+                                   {% if earning.earning_component_type == "Basic Pay" %}
+                                       {% full_basic_found = true %}
+                                       <td class="right">{{ earning.amount }}</td>
+                                   {% endif %}
+                               {% endfor %}
+                               {% if not full_basic_found %}
+                                   <td class="right">0.00</td>
+                               {% endif %}
+                           </tr>
+                           <tr><td style="padding-left: 8px;">HRA</td>
+                               {% for earning in salary_slip.earning_data %}
+                                   {% if earning.earning_component_type == "HRA" %}
+                                       {% full_hra_found = true %}
+                                       <td class="right">{{ earning.amount }}</td>
+                                   {% endif %}
+                               {% endfor %}
+                               {% if not full_hra_found %}
+                                   <td class="right">0.00</td>
+                               {% endif %}
+                           </tr>
+                           <tr><td style="padding-left: 8px;">CONV</td>
+                               {% for earning in salary_slip.earning_data %}
+                                   {% if earning.earning_component_type == "HRA" %}
+                                       {% full_conveyance_found = true %}
+                                       <td class="right">{{ earning.amount }}</td>
+                                   {% endif %}
+                               {% endfor %}
+                               {% if not full_conveyance_found %}
+                                   <td class="right">0.00</td>
+                               {% endif %}
+                           </tr>
+                       </table>
+                   </td>
+                   <td class="top tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           {% basic_found = false %}
+                           {% basic_diff_found = false %}
+
+
+                           {% for detail in salary_slip.details %}
+                               {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "Basic Pay" %}
+                                   {% basic_found = true %}
+                                   <tr><td class="right" style="padding: 8px 0px;">{{ detail.Amount }}</td></tr>
+                               {% endif %}
+                           {% endfor %}
+                           {% for detail in salary_slip.details %}
+                               {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "Difference" && detail.custom_difference_type == "Basic Diff" %}
+                                   {% basic_diff_found = true %}
+                                   <tr><td class="right" style="padding: 8px 0px;">{{ detail.Amount }}</td></tr>
+                               {% endif %}
+                           {% endfor %}
+
+
+                           {% if not basic_found %}
+                               <tr><td class="right" style="padding: 8px 0px;">0.00</td></tr>
+                           {% endif %}
+
+
+                           {% if not basic_diff_found %}
+                               <tr><td class="right" style="padding: 8px 0px;">0.00</td></tr>
+                           {% endif %}
+                       </table>
+                   </td>
+                   <td class="top tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           {% hra_found = false %}
+                           {% hra_diff_found = false %}
+
+
+                           {% for detail in salary_slip.details %}
+                               {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "HRA" %}
+                                   {% hra_found = true %}
+                                   <tr><td class="right" style="padding: 8px 0px;">{{ detail.Amount }}</td></tr>
+                               {% endif %}
+                           {% endfor %}
+                           {% for detail in salary_slip.details %}
+                               {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "Difference" && detail.custom_difference_type == "HRA Diff" %}
+                                   {% hra_diff_found = true %}
+                                   <tr><td class="right" style="padding: 8px 0px;">{{ detail.Amount }}</td></tr>
+                               {% endif %}
+                           {% endfor %}
+
+
+                           {% if not hra_found %}
+                               <tr><td class="right" style="padding: 8px 0px;">0.00</td></tr>
+                           {% endif %}
+
+
+                           {% if not hra_diff_found %}
+                               <tr><td class="right" style="padding: 8px 0px;">0.00</td></tr>
+                           {% endif %}
+                       </table>
+                   </td>
+                   <td class="top tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;">
+                           {% conveyance_found = false %}
+                           {% conveyance_diff_found = false %}
+
+
+                           {% for detail in salary_slip.details %}
+                               {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "Conveyance Allowance" %}
+                                   {% conveyance_found = true %}
+                                   <tr><td class="right" style="padding: 8px 0px;">{{ detail.Amount }}</td></tr>
+                               {% endif %}
+                           {% endfor %}
+                           {% for detail in salary_slip.details %}
+                               {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "Difference" && detail.custom_difference_type == "Conveyance Diff" %}
+                                   {% conveyance_diff_found = true %}
+                                   <tr><td class="right" style="padding: 8px 0px;">{{ detail.Amount }}</td></tr>
+                               {% endif %}
+                           {% endfor %}
+
+
+                           {% if not conveyance_found %}
+                               <tr><td class="right" style="padding: 8px 0px;">0.00</td></tr>
+                           {% endif %}
+
+
+                           {% if not conveyance_diff_found %}
+                               <tr><td class="right" style="padding: 8px 0px;">0.00</td></tr>
+                           {% endif %}
+                       </table>
+                   </td>
+                   <td class="top tabborder right" style="padding-top: 8px;">{{ salary_slip.Gross_Pay }}</td>
+                   {% provident_fund_found = false %}
+                   {% professional_tax_found = false %}
+                   {% loan_found = false %}
+                   {% income_tax_found = false %}
+                   {% bus_deduction_found = false %}
+                   {% canteen_deduction_found = false %}
+                   {% lwf_found = false %}
+                   {% other_deduction_found = false %}
+
+
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_deduction_component_type == "Provident Fund" && detail.custom_pf_account_contribution == "Employee\'s Contri A/C No. 1" %}
+                           {% provident_fund_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_deduction_component_type == "Professional Tax" %}
+                           {% professional_tax_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.Salary_Component == "Loan" %}
+                           {% loan_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_is_income_tax_component == "1" %}
+                           {% income_tax_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_deduction_component_type == "Bus Deduction" %}
+                           {% bus_deduction_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_deduction_component_type == "Canteen Deduction" && detail.custom_canteen_type == "1" %}
+                           {% canteen_deduction_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_deduction_component_type == "LWF" %}
+                           {% lwf_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Deduction" && detail.custom_deduction_component_type == "Other Deduction" %}
+                           {% other_deduction_found = true %}
+                           <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+
+
+                   {% if not provident_fund_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not professional_tax_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not loan_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not income_tax_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not bus_deduction_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not canteen_deduction_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not lwf_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   {% if not other_deduction_found %}
+                       <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">0.00</td>
+                   {% endif %}
+                   <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ salary_slip.Total_Deduction }}</td>
+                   <td rowspan="3" class="top tabborder right" style="padding-top: 8px;">{{ salary_slip.Net_Pay }}</td>
+                   <td rowspan="3" class="top tabborder"></td>
+               </tr>
+               <tr>
+                   {% attendance_incentive_found = false %}
+                   {% production_incentive_found = false %}
+                   {% loyalty_incentive_found = false %}
+                   {% total = 0 %}
+
+
+                   <!-- {% for detail in salary_slip.details %}
+                       {% if detail.Salary_Component == "Attendance Incentive" %}
+                           {% attendance_incentive_found = true %}
+                           <td rowspan="2" class="top tabborder right pt-3">{{ detail.Amount }}</td>
+                       {% endif %}
+                       {% if detail.Salary_Component == "Production Incentive" %}
+                           {% production_incentive_found = true %}
+                           <td rowspan="2" class="top tabborder right pt-3">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %} -->
+                   {% for detail in salary_slip.details %}
+                       {% if detail.custom_type == "Earning" && detail.custom_earning_component_type == "Incentive" && detail.custom_incentive_type == "Loyalty Incentive" %}
+                           {% loyalty_incentive_found = true %}
+                           {% total = detail.Amount %}
+                           <td rowspan="2" class="top tabborder right pt-3">{{ detail.Amount }}</td>
+                       {% endif %}
+                   {% endfor %}
+
+
+                   {% if not attendance_incentive_found %}
+                       <td rowspan="2" class="top tabborder right" style="padding-top: 12px;">0.00</td>
+                   {% endif %}
+                   {% if not production_incentive_found %}
+                       <td rowspan="2" class="top tabborder right" style="padding-top: 12px;">0.00</td>
+                   {% endif %}
+                   {% if not loyalty_incentive_found %}
+                       <td rowspan="2" class="top tabborder right" style="padding-top: 12px;">0.00</td>
+                   {% endif %}
+                   <td rowspan="2" class="top tabborder right" style="padding-top: 12px;">{{ total }}</td>
+               </tr>
+               <tr>
+                   <td class="tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;"><tr>
+                               <td class="right"><b>TOT. </b> </td>
+                               <td class="right"><b>{{ salary_slip.Total_days }}</b></td>
+                           </tr></table>
+                   </td>
+                   <td class="tabborder">
+                       <table width="100%" style="font-size: 10px; color: black;"><tr>
+                               <td><b style="padding-left: 8px;">Total </b> </td>
+                               <td class="right"><b>{{ salary_slip.total_rate }}</b></td>
+                           </tr></table>
+                   </td>
+               </tr>
+               {% endfor %} 
+           </tbody>
+       </table>
+   </div>
 </body>
 </html>
-
-
